@@ -64,7 +64,7 @@ public class BaseCharacter : MonoBehaviour
         {
             currentState = GAMESTATES.FIREBALL;
             anim.SetTrigger("Fireball");
-            rb.velocity = new Vector2(0, 0);
+           rb.velocity = new Vector2(0, 0);
             canWalk = false;
             specialPressed = false;
         }
@@ -88,7 +88,7 @@ public class BaseCharacter : MonoBehaviour
         CheckDirection();
 
         // walk
-        if (!isJumping && canWalk) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
+        //if (!isJumping && canWalk) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
 
         // jump
         if (velocity.y > 0 && !isJumping && canWalk)
