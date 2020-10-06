@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class BaseCharacter : MonoBehaviour
 {
+    public bool player;
     private enum GAMESTATES
     {
         IDLE,
@@ -88,7 +89,7 @@ public class BaseCharacter : MonoBehaviour
         CheckDirection();
 
         // walk
-        if (!isJumping && canWalk) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
+        if (!isJumping && canWalk && player) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
 
         // jump
         if (velocity.y > 0 && !isJumping && canWalk)

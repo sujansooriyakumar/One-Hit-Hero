@@ -15,7 +15,7 @@ public class ObstacleAvoidance : MonoBehaviour
     void Start()
     {
         isJumping = false;
-        lookAhead = 4.0f;
+        lookAhead = 1.0f;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
