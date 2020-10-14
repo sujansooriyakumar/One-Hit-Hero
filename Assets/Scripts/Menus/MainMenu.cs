@@ -3,12 +3,11 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
     private bool isConnecting = false;
-
     private const string GameVersion = "0.1";
     private const int maxPlayersPerRoom = 2;
 
@@ -19,7 +18,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public void FindOpponent()
     {
-
         isConnecting = true;
         if (PhotonNetwork.IsConnected)
         {

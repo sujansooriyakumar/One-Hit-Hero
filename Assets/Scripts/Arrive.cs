@@ -6,7 +6,7 @@ public class Arrive : MonoBehaviour
 {
     float maxAccel;
     float speed = 2.5f;
-    float targetRadius = 2.0f;
+    float targetRadius = 1.0f;
     public GameObject target;
     // Start is called before the first frame update
     void Start()

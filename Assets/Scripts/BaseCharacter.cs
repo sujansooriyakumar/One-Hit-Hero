@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BaseCharacter : MonoBehaviour
+public class BaseCharacter : MonoBehaviourPun
 {
-    public bool player;
     private enum GAMESTATES
     {
         IDLE,
@@ -40,19 +40,21 @@ public class BaseCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // walking animation
-
-        if (rb.velocity.x != 0)
+        if (photonView.IsMine)
         {
-            currentState = GAMESTATES.WALK;
-            anim.SetBool("walkFwd", true);
-        }
+            // walking animation
 
-        if (rb.velocity.x == 0)
-        {
-            anim.SetBool("walkFwd", false);
-            anim.SetBool("walkBack", false);
+            if (rb.velocity.x != 0)
+            {
+                currentState = GAMESTATES.WALK;
+                anim.SetBool("walkFwd", true);
+            }
+
+            if (rb.velocity.x == 0)
+            {
+                anim.SetBool("walkFwd", false);
+                anim.SetBool("walkBack", false);
+            }
         }
         // attack animations
 
@@ -61,44 +63,47 @@ public class BaseCharacter : MonoBehaviour
     // fixed update for physics only
     private void FixedUpdate()
     {
-        if (specialPressed && !isJumping && !projectileInst && velocity.y == 0 && currentState == GAMESTATES.IDLE)
+        if (photonView.IsMine)
         {
-            currentState = GAMESTATES.FIREBALL;
-            anim.SetTrigger("Fireball");
-           rb.velocity = new Vector2(0, 0);
-            canWalk = false;
-            specialPressed = false;
-        }
+            if (specialPressed && !isJumping && !projectileInst && velocity.y == 0 && currentState == GAMESTATES.IDLE)
+            {
+                currentState = GAMESTATES.FIREBALL;
+                anim.SetTrigger("Fireball");
+                rb.velocity = new Vector2(0, 0);
+                canWalk = false;
+                specialPressed = false;
+            }
 
-        if (specialPressed && velocity.y < 0 && !isJumping && currentState == GAMESTATES.IDLE)
-        {
-            currentState = GAMESTATES.DP;
-            anim.SetTrigger("AntiAir");
-            canWalk = false;
-            specialPressed = false;
+            if (specialPressed && velocity.y < 0 && !isJumping && currentState == GAMESTATES.IDLE)
+            {
+                currentState = GAMESTATES.DP;
+                anim.SetTrigger("AntiAir");
+                canWalk = false;
+                specialPressed = false;
 
-        }
+            }
 
-        if (specialPressed && isJumping)
-        {
-            currentState = GAMESTATES.AERIAL;
-            anim.SetTrigger("Aerial");
-            specialPressed = false;
+            if (specialPressed && isJumping)
+            {
+                currentState = GAMESTATES.AERIAL;
+                anim.SetTrigger("Aerial");
+                specialPressed = false;
 
-        }
-        CheckDirection();
+            }
+            //CheckDirection();
 
-        // walk
-        if (!isJumping && canWalk && player) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
+            // walk
+            if (!isJumping && canWalk) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
 
-        // jump
-        if (velocity.y > 0 && !isJumping && canWalk)
-        {
-            if (rb.velocity.x == 0) anim.SetTrigger("Jump");
-            else { anim.SetTrigger("JumpFwd"); }
-            anim.SetBool("Grounded", false);
-            rb.AddForce(new Vector2(0, 200), ForceMode2D.Force);
-            isJumping = true;
+            // jump
+            if (velocity.y > 0 && !isJumping && canWalk)
+            {
+                if (rb.velocity.x == 0) anim.SetTrigger("Jump");
+                else { anim.SetTrigger("JumpFwd"); }
+                anim.SetBool("Grounded", false);
+                rb.AddForce(new Vector2(0, 200), ForceMode2D.Force);
+                isJumping = true;
+            }
         }
 
     }
@@ -121,13 +126,7 @@ public class BaseCharacter : MonoBehaviour
 
     void Fireball()
     {
-        if (projectileInst == null)
-        {
-            projectileInst = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
-            Rigidbody2D projectileRB = projectileInst.GetComponent<Rigidbody2D>();
-            if (transform.localScale.x == -1) projectileRB.velocity = new Vector2(5.0f, 0.0f);
-            else projectileRB.velocity = new Vector2(-5.0f, 0.0f);
-        }
+        photonView.RPC("FireProjectile", RpcTarget.AllViaServer);
     }
 
     void Aerial()
@@ -161,7 +160,7 @@ public class BaseCharacter : MonoBehaviour
     {
         if (collision.gameObject.tag == "Attack")
         {
-            // anim.SetTrigger("Hit");
+             anim.SetTrigger("Hit");
         }
     }
 
@@ -209,10 +208,23 @@ public class BaseCharacter : MonoBehaviour
     public void Kill()
     {
         anim.SetTrigger("Hit");
+        Debug.Log("hit");
+
         canWalk = false;
 
     }
+    [PunRPC]
+    void FireProjectile()
+    {
+        if (projectileInst == null)
+        {
+            projectileInst = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
+            Rigidbody2D projectileRB = projectileInst.GetComponent<Rigidbody2D>();
+            if (transform.localScale.x == -1) projectileRB.velocity = new Vector2(5.0f, 0.0f);
+            else projectileRB.velocity = new Vector2(-5.0f, 0.0f);
+        }
 
+    }
 }
 
 

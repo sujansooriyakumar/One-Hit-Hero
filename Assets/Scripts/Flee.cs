@@ -10,15 +10,14 @@ public class Flee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxAccel = 7.0f;
+        maxAccel = 1.0f;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody2D>().velocity += GetSteering() * Time.deltaTime;
-
+        GetComponent<Rigidbody2D>().velocity = new Vector2(GetSteering().x, GetComponent<Rigidbody2D>().velocity.y);
     }
 
     Vector2 GetSteering()
@@ -27,7 +26,7 @@ public class Flee : MonoBehaviour
         result = transform.position - target.transform.position;
         result.Normalize();
         result *= maxAccel;
-        result.y = 0;
+       // result.y = 0;
         return result;
     }
 }
