@@ -14,14 +14,26 @@ public class PlayerSpawner : MonoBehaviourPun
     private void Start()
     {
 
-        PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
-            
-        
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, SpawnLocA.position, Quaternion.identity);
+        }
+
+        else
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, SpawnLocB.position, Quaternion.identity);
+
+
+        }
+
+
+
+
+
     }
 
     [PunRPC]
     void CheckSpawned()
     {
-        
     }
 }

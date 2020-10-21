@@ -91,6 +91,7 @@ public class BaseCharacter : MonoBehaviourPun
 
             }
             //CheckDirection();
+            photonView.RPC("CheckDirection", RpcTarget.All);
 
             // walk
             if (!isJumping && canWalk) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
@@ -101,7 +102,7 @@ public class BaseCharacter : MonoBehaviourPun
                 if (rb.velocity.x == 0) anim.SetTrigger("Jump");
                 else { anim.SetTrigger("JumpFwd"); }
                 anim.SetBool("Grounded", false);
-                rb.AddForce(new Vector2(0, 200), ForceMode2D.Force);
+                rb.AddForce(new Vector2(0, 300), ForceMode2D.Force);
                 isJumping = true;
             }
         }
@@ -111,7 +112,7 @@ public class BaseCharacter : MonoBehaviourPun
     void AntiAir()
     {
         currentState = GAMESTATES.AIRINVUL;
-        rb.AddForce(new Vector2(0, 200), ForceMode2D.Force);
+        rb.AddForce(new Vector2(0, 250), ForceMode2D.Force);
         anim.SetBool("Grounded", false);
         Collider2D[] cols = Physics2D.OverlapBoxAll(attackHitboxes[1].bounds.center, attackHitboxes[1].bounds.extents, 1.0f, LayerMask.GetMask("Hitbox"));
         foreach (Collider2D c in cols)
@@ -148,7 +149,7 @@ public class BaseCharacter : MonoBehaviourPun
         if (collision.gameObject.tag == "Ground")
         {
             isJumping = false;
-            anim.SetBool("Grounded", true);
+            if(anim != null) anim.SetBool("Grounded", true);
         }
 
 
@@ -170,28 +171,40 @@ public class BaseCharacter : MonoBehaviourPun
         currentState = GAMESTATES.IDLE;
     }
 
+    [PunRPC]
     void CheckDirection()
     {
         BaseCharacter p2 = null;
         BaseCharacter[] players = GameObject.FindObjectsOfType<BaseCharacter>();
-        if (players[0] != this) p2 = players[0];
-        else if (players[1] != this) p2 = players[1];
 
-        if (p2.transform.position.x > transform.position.x)
+        if (players.Length >= 2)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (p2.transform.position.x < transform.position.x)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
+            if (players[0] == this)
+            {
+                p2 = players[1];
+            }
+
+            else if (players[1] == this)
+            {
+                p2 = players[0];
+            }
+
+            if (p2.transform.position.x > transform.position.x)
+            {
+                transform.localScale = new Vector3(-2, 2, 1);
+            }
+            else if (p2.transform.position.x < transform.position.x)
+            {
+                transform.localScale = new Vector3(2, 2, 1);
+            }
         }
 
-
+    
     }
 
     public void MoveEvent(InputAction.CallbackContext context)
     {
-        velocity = context.ReadValue<Vector2>();
+        velocity = context.ReadValue<Vector2>() * 1.5f;
         if (velocity.y != 0)
         {
             currentState = GAMESTATES.JUMP;
