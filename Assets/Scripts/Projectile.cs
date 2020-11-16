@@ -10,8 +10,7 @@ public class Projectile : MonoBehaviourPun
  
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("hit");
-            collision.gameObject.GetComponent<BaseCharacter>().Kill();
+            collision.gameObject.GetComponent<CharacterAnimation>().Kill();
 
         }
         Destroy(gameObject);

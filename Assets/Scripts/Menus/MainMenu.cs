@@ -7,15 +7,26 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
+    public string characterChoice;
+    public Dropdown dropdown;
+    
     private bool isConnecting = false;
     private const string GameVersion = "0.1";
     private const int maxPlayersPerRoom = 2;
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         PhotonNetwork.AutomaticallySyncScene = true;
+        characterChoice = dropdown.options[dropdown.value].text;
+
     }
 
+
+    public void SetCharacter()
+    {
+        characterChoice = dropdown.options[dropdown.value].text;
+    }
     public void FindOpponent()
     {
         isConnecting = true;
@@ -36,6 +47,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
         if (isConnecting)
         {
             PhotonNetwork.JoinRandomRoom();
+            isConnecting = false;
+
         }
     }
 
@@ -68,12 +81,19 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if(PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
+        if (PhotonNetwork.CurrentRoom.PlayerCount == maxPlayersPerRoom)
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             Debug.Log("match is ready to begin");
             PhotonNetwork.LoadLevel("SampleScene");
+
         }
     }
 
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        PhotonNetwork.LeaveRoom();
+        
+        PhotonNetwork.LoadLevel("MainMenu");
+    }
 }

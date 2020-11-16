@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class BaseCharacter : MonoBehaviourPun
 {
@@ -40,6 +41,7 @@ public class BaseCharacter : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
+        
         if (photonView.IsMine)
         {
             // walking animation
@@ -91,7 +93,7 @@ public class BaseCharacter : MonoBehaviourPun
 
             }
             //CheckDirection();
-            photonView.RPC("CheckDirection", RpcTarget.All);
+            if(PhotonNetwork.IsConnected) photonView.RPC("CheckDirection", RpcTarget.All);
 
             // walk
             if (!isJumping && canWalk) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
@@ -102,7 +104,7 @@ public class BaseCharacter : MonoBehaviourPun
                 if (rb.velocity.x == 0) anim.SetTrigger("Jump");
                 else { anim.SetTrigger("JumpFwd"); }
                 anim.SetBool("Grounded", false);
-                rb.AddForce(new Vector2(0, 300), ForceMode2D.Force);
+                rb.AddForce(new Vector2(0, 400), ForceMode2D.Force);
                 isJumping = true;
             }
         }
@@ -142,8 +144,6 @@ public class BaseCharacter : MonoBehaviourPun
         }
     }
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
@@ -156,7 +156,6 @@ public class BaseCharacter : MonoBehaviourPun
 
 
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Attack")
@@ -221,9 +220,27 @@ public class BaseCharacter : MonoBehaviourPun
     public void Kill()
     {
         anim.SetTrigger("Hit");
-        Debug.Log("hit");
 
-        canWalk = false;
+        BaseCharacter p2 = null;
+        BaseCharacter[] players = GameObject.FindObjectsOfType<BaseCharacter>();
+
+        if (players.Length >= 2)
+        {
+            if (players[0] == this)
+            {
+                p2 = players[1];
+            }
+
+            else if (players[1] == this)
+            {
+                p2 = players[0];
+            }
+
+        }
+        p2.GetComponent<Animator>().SetTrigger("Win");
+
+
+            canWalk = false;
 
     }
     [PunRPC]
@@ -233,11 +250,21 @@ public class BaseCharacter : MonoBehaviourPun
         {
             projectileInst = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
             Rigidbody2D projectileRB = projectileInst.GetComponent<Rigidbody2D>();
-            if (transform.localScale.x == -1) projectileRB.velocity = new Vector2(5.0f, 0.0f);
+            if (transform.localScale.x < 0) projectileRB.velocity = new Vector2(5.0f, 0.0f);
             else projectileRB.velocity = new Vector2(-5.0f, 0.0f);
         }
 
     }
+
+    public void DisconnectFromServer()
+    {
+
+       
+        
+
+    }
+    
 }
+
 
 
