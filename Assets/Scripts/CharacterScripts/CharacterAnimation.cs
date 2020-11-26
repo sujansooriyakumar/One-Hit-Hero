@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Controls the animation for the character
+ * as well as attacks. 
+ */
 public class CharacterAnimation : MonoBehaviour
 {
     Animator anim;

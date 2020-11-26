@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon;
 using Photon.Pun;
 
-public class Camera : MonoBehaviourPun
+public class CameraControl : MonoBehaviourPun
 {
     // get reference to both players
     // get distance between both players
@@ -13,8 +13,8 @@ public class Camera : MonoBehaviourPun
     // if the players are moving to the left, pan left
     // if the players are moving to the right, pan right
     // clamp edges of cam
-    public BaseCharacter[] playersRef;
-    BaseCharacter leftPlayer, rightPlayer;
+    public Character[] playersRef;
+    Character leftPlayer, rightPlayer;
     float distance;
     float maxDistance = 6.0f;
     float minX;
@@ -81,7 +81,7 @@ public class Camera : MonoBehaviourPun
     [PunRPC]
     void GetPlayerRefs()
     {
-        playersRef = FindObjectsOfType<BaseCharacter>();
+        playersRef = FindObjectsOfType<Character>();
     }
 
 }

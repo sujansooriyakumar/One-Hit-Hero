@@ -43,6 +43,10 @@ public class Character : MonoBehaviourPun
         }
 
         if (PhotonNetwork.IsConnected) photonView.RPC("CheckDirection", RpcTarget.All);
+        else
+        {
+            CheckDirection();
+        }
     }
     virtual public void SpecialEvent(InputAction.CallbackContext context)
     {

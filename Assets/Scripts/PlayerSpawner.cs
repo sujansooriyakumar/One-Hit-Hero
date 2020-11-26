@@ -6,28 +6,39 @@ using UnityEngine;
 public class PlayerSpawner : MonoBehaviourPun
 {
     bool aSpawned, bSpawned = false;
-    MainMenu controller;
     [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] private Transform SpawnLocA = null;
     [SerializeField] private Transform SpawnLocB = null;
+    GameController gc;
 
+    private void Awake()
+    {
+        gc = FindObjectOfType<GameController>();
+    }
     private void Start()
     {
-        controller = FindObjectOfType<MainMenu>();
 
-
-        if (PhotonNetwork.IsMasterClient)
+        if (gc.isNetworked)
         {
-            PhotonNetwork.Instantiate(controller.characterChoice, SpawnLocA.position, Quaternion.identity);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.Instantiate(gc.GetCharacter(), SpawnLocA.position, Quaternion.identity);
+            }
+
+            else
+            {
+                PhotonNetwork.Instantiate(gc.GetCharacter(), SpawnLocB.position, Quaternion.identity);
+
+
+            }
         }
 
         else
         {
-            PhotonNetwork.Instantiate(controller.characterChoice, SpawnLocB.position, Quaternion.identity);
-
-
+            Instantiate(Resources.Load(gc.characterSelection), SpawnLocA.position, Quaternion.identity);
+            Instantiate(Resources.Load(gc.characterSelectionp2), SpawnLocB.position, Quaternion.identity);
         }
-
 
 
 

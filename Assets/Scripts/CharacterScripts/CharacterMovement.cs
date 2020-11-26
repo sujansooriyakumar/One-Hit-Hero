@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+/*
+ * Controls all character movement
+ * including jumping and horizontal movement.
+ */
 public class CharacterMovement : MonoBehaviourPun
 {
     Rigidbody2D rb;

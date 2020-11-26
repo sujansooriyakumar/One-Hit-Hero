@@ -6,12 +6,22 @@ public class Arrive : MonoBehaviour
 {
     float maxAccel;
     float speed = 2.5f;
-    float targetRadius = 1.0f;
-    public GameObject target;
+    float targetRadius = 5.0f;
+    public Character target;
     // Start is called before the first frame update
     void Start()
     {
         maxAccel = 3.0f;
+        Character[] players = FindObjectsOfType<Character>();
+        if(players[0] == this)
+        {
+            target = players[1];
+        }
+
+        else
+        {
+            target = players[0];
+        }
     }
 
     // Update is called once per frame
@@ -25,9 +35,9 @@ public class Arrive : MonoBehaviour
     {
         Vector2 result;
         result = target.transform.position - transform.position;
+
         if(result.magnitude < targetRadius)
         {
-            Debug.Log(result);
 
             return new Vector2(0, 0);
         }

@@ -433,31 +433,31 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Fireball
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Jump
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: JumpFwd
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: AntiAir
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Aerial
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Hit
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Grounded
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Win
   - Type: 1
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: walkSpeed
   m_SynchronizeLayers:
   - SynchronizeType: 1
