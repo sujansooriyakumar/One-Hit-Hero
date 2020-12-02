@@ -75,8 +75,9 @@ GameObject:
   - component: {fileID: 3599387626329403904}
   - component: {fileID: 3599387626329403907}
   - component: {fileID: 3912052196213797371}
-  - component: {fileID: 2994351661938205632}
   - component: {fileID: 6882212712737025191}
+  - component: {fileID: -4539964545758290526}
+  - component: {fileID: 2994351661938205632}
   m_Layer: 8
   m_Name: CharacterB
   m_TagString: Player
@@ -346,6 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNetworked: 0
+  playerID: 0
 --- !u!114 &3599387626329403907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +365,7 @@ MonoBehaviour:
   attackHitboxes:
   - {fileID: 5826050530306504325}
   - {fileID: 3313558520406707342}
+  canAttack: 0
 --- !u!114 &3912052196213797371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,11 +385,43 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 2994351661938205632}
   - {fileID: 6882212712737025191}
+  - {fileID: -4539964545758290526}
+  - {fileID: 2994351661938205632}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &6882212712737025191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784006303645579137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+--- !u!114 &-4539964545758290526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784006303645579137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &2994351661938205632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,32 +456,17 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: Hit
   - Type: 4
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Grounded
   - Type: 9
     SynchronizeType: 1
     Name: Win
   - Type: 1
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: walkSpeed
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
---- !u!114 &6882212712737025191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784006303645579137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
 --- !u!1 &4572104758447724678
 GameObject:
   m_ObjectHideFlags: 0

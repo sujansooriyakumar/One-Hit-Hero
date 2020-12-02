@@ -19,7 +19,11 @@ public class AdvanceState: IState
         entryActions[0] = new AdvanceAction(sm);
         actions = new IAction[1];
         actions[0] = new AdvanceAction(sm);
-        transitions = new ITransition[0];
+        transitions = new ITransition[3];
+        transitions[0] = new ToRetreat(sm);
+        transitions[1] = new ToInitial(sm);
+        transitions[2] = new ToProjectile(sm_);
+
     }
     public IAction[] GetExitActions()
     {
@@ -28,7 +32,7 @@ public class AdvanceState: IState
 
     public  IAction[] GetActions()
     {
-        foreach(IAction a in actions)
+        foreach (IAction a in actions)
         {
             a.Execute();
         }

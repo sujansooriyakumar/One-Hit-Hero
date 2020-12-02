@@ -12,10 +12,9 @@ public class AdvanceCondition : MonoBehaviour, ICondition
     public bool Test()
     {
         bool result = false;
-        Character[] players = FindObjectsOfType<Character>();
 
 
-        if (Vector3.Distance(players[0].transform.position, players[1].transform.position) >= 5.0f)
+        if (sm.GetPlayerRef().GetComponent<Character>().GetCurrentState() == Character.PlayerState.RETREATING)
         {
             result = true;
         }

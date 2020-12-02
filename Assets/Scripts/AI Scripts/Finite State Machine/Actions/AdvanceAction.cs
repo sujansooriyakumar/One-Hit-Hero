@@ -19,7 +19,7 @@ public class AdvanceAction : IAction
         return false;
     }
 
-    public  void Execute()
+    public void Execute()
     {
         GameObject npcRef = sm.gameObject;
         if(sm.GetComponent<Arrive>() == null)
@@ -28,6 +28,7 @@ public class AdvanceAction : IAction
         }
 
         npcRef.GetComponent<Arrive>().enabled = true;
+        if(npcRef.GetComponent<Flee>())npcRef.GetComponent<Flee>().enabled = false;
     }
 
     public bool Interrupt()

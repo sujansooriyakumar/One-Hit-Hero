@@ -2,33 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitialToAdvance : ITransition
+public class ToInitial : ITransition
 {
 
     StateMachine sm;
     IState targetState;
     IAction[] actions;
     ICondition condition;
-
-    public InitialToAdvance(StateMachine sm_)
+    public ToInitial(StateMachine sm_)
     {
         sm = sm_;
-        targetState = new AdvanceState(sm);
-        condition = new AdvanceCondition(sm);
+        targetState = sm.initialState;
+        condition = new InitialCondition(sm);
         actions = new IAction[1];
         actions[0] = new AdvanceAction(sm);
     }
-    public  IState GetTargetState()
+    public IState GetTargetState()
     {
-        return targetState;
+        return sm.initialState;
     }
 
-    public  bool IsTriggered()
+    public bool IsTriggered()
     {
         return condition.Test();
     }
 
-    public  IAction[] GetActions()
+    public IAction[] GetActions()
     {
         return actions;
     }

@@ -5,19 +5,29 @@ using UnityEngine;
 public class Flee : MonoBehaviour
 {
 
-    public GameObject target;
+    public Character target;
     float maxAccel;
     // Start is called before the first frame update
     void Start()
     {
-        maxAccel = 1.0f;
+        maxAccel = 3.0f;
+        Character[] players = FindObjectsOfType<Character>();
+        if (players[0] == this)
+        {
+            target = players[1];
+        }
+
+        else
+        {
+            target = players[0];
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(GetSteering().x, GetComponent<Rigidbody2D>().velocity.y);
+        if (GetComponent<CharacterMovement>().canMove) GetComponent<Rigidbody2D>().velocity = new Vector2(GetSteering().x, GetComponent<Rigidbody2D>().velocity.y);
     }
 
     Vector2 GetSteering()

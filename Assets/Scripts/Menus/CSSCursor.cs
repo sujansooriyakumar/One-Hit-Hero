@@ -28,10 +28,9 @@ public class CSSCursor : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
 
         gr.Raycast(pointerEventData, results);
-        Debug.Log(results.Count);
+
         if (results.Count > 1)
         {
-            Debug.Log(results[1]);
             currentSelection = results[1].gameObject.name;
         }
     }

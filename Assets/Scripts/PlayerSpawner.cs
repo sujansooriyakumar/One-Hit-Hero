@@ -7,28 +7,27 @@ public class PlayerSpawner : MonoBehaviourPun
 {
     bool aSpawned, bSpawned = false;
     [SerializeField] private GameObject playerPrefab = null;
-    [SerializeField] private Transform SpawnLocA = null;
-    [SerializeField] private Transform SpawnLocB = null;
+    [SerializeField] public Transform SpawnLocA = null;
+    [SerializeField] public Transform SpawnLocB = null;
+    GameObject p1, p2;
     GameController gc;
 
     private void Awake()
     {
         gc = FindObjectOfType<GameController>();
-    }
-    private void Start()
-    {
-
         if (gc.isNetworked)
         {
 
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.Instantiate(gc.GetCharacter(), SpawnLocA.position, Quaternion.identity);
+                p1 = PhotonNetwork.Instantiate(gc.GetCharacter(), SpawnLocA.position, Quaternion.identity);
+                p1.GetComponent<Character>().playerID = 1;
             }
 
             else
             {
-                PhotonNetwork.Instantiate(gc.GetCharacter(), SpawnLocB.position, Quaternion.identity);
+                p2 = PhotonNetwork.Instantiate(gc.GetCharacter(), SpawnLocB.position, Quaternion.identity);
+                p2.GetComponent<Character>().playerID = 2;
 
 
             }
@@ -36,13 +35,15 @@ public class PlayerSpawner : MonoBehaviourPun
 
         else
         {
-            Instantiate(Resources.Load(gc.characterSelection), SpawnLocA.position, Quaternion.identity);
-            Instantiate(Resources.Load(gc.characterSelectionp2), SpawnLocB.position, Quaternion.identity);
+            p1 = Instantiate<GameObject>(Resources.Load<GameObject>(gc.characterSelection), SpawnLocA.position, Quaternion.identity);
+            p1.GetComponent<Character>().playerID = 1001;
+            p2 = Instantiate<GameObject>(Resources.Load<GameObject>(gc.characterSelectionp2), SpawnLocB.position, Quaternion.identity);
+            p2.GetComponent<Character>().playerID = 2001;
         }
-
-
-
-
+    }
+    private void Start()
+    {
+        
     }
 
     [PunRPC]

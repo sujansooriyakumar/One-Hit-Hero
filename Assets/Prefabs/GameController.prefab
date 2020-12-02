@@ -43,3 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8735624e96caddf439afc4ebaa7e01ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNetworked: 0
+  characterSelection: 
+  characterSelectionp2: 
+  playerOneWins: 0
+  playerTwoWins: 0
+  gameOver: {fileID: 6065775391424003169, guid: 7c6fb49cc1717c54a8b7bfd1bfb99421, type: 3}

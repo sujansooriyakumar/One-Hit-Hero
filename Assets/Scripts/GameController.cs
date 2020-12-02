@@ -1,17 +1,27 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameController : MonoBehaviourPun
 {
     // Start is called before the first frame update
     public bool isNetworked;
     public string characterSelection;
     public string characterSelectionp2;
+    public bool paused;
+    public int playerOneWins;
+    public int playerTwoWins;
+    public GameObject gameOver;
+    GameObject gameoverhud;
     void Start()
     {
         DontDestroyOnLoad(this);
+        playerOneWins = 0;
+        paused = false;
+        playerTwoWins = 0;
+
     }
 
     public void SetCharacter(string name_, int playerID)
@@ -31,5 +41,57 @@ public class GameController : MonoBehaviour
     {
         return characterSelection;
     }
-    
+
+    public void UpdateScore(int playerID_)
+    {
+        if (playerID_ == 1001) playerOneWins++;
+        else playerTwoWins++;
+        if (playerOneWins >= 5 || playerTwoWins >= 5)
+        {
+            gameoverhud = Instantiate(gameOver, transform.position, Quaternion.identity);
+
+        }
+        else
+        {
+            Invoke("ResetPositions", 2.0f);
+        }
+    }
+
+    public void ResetPositions()
+    {
+        Character[] players = GameObject.FindObjectsOfType<Character>();
+        foreach(Character c in players)
+        {
+            if(c.playerID == 1001)
+            {
+                c.transform.position = FindObjectOfType<PlayerSpawner>().SpawnLocA.position;
+            }
+
+            else
+            {
+                c.transform.position = FindObjectOfType<PlayerSpawner>().SpawnLocB.position;
+            }
+
+            if (playerOneWins < 5 && playerTwoWins < 5)
+            {
+                c.GetComponent<CharacterMovement>().canMove = true;
+                c.GetComponent<CharacterAnimation>().canAttack = true;
+            }
+        }
+        Camera.main.transform.position = new Vector3(0, 0, -10);
+    }
+
+
+    public void MainMenu()
+    {
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.LoadLevel("NewMainMenu");
+    }
+
+    [PunRPC]
+    void ReloadLevel()
+    {
+
+    }
+
 }

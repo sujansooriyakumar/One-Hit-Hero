@@ -13,14 +13,16 @@ public class InitialState : IState
     public InitialState(StateMachine sm_)
     {
         sm = sm_;
-        transitions = new ITransition[1];
-        transitions[0] = new InitialToAdvance(sm_);
+        transitions = new ITransition[3];
+        transitions[0] = new ToAdvance(sm_);
+        transitions[1] = new ToRetreat(sm_);
+        transitions[2] = new ToProjectile(sm_);
         exitActions = new IAction[1];
-        exitActions[0] = new AdvanceAction(sm);
+        exitActions[0] = new InitialAction(sm);
         entryActions = new IAction[1];
-        entryActions[0] = new AdvanceAction(sm);
+        entryActions[0] = new InitialAction(sm);
         actions = new IAction[1];
-        actions[0] = new AdvanceAction(sm);
+        actions[0] = new InitialAction(sm);
 
 
     }
@@ -32,6 +34,10 @@ public class InitialState : IState
 
     public IAction[] GetActions()
     {
+        foreach (IAction a in actions)
+        {
+            a.Execute();
+        }
         return actions;
     }
 

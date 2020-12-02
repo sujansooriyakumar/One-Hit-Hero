@@ -6,12 +6,22 @@ using UnityEngine.InputSystem;
 
 public class Character : MonoBehaviourPun
 {
+
+    public enum PlayerState
+    {
+        ADVANCING,
+        RETREATING,
+        JUMPING,
+        DEFAULT
+    }
+    PlayerState currentState;
     public bool isNetworked;
     private CharacterMovement moveController;
     private CharacterAnimation animationController;
     private Rigidbody2D rb;
     private bool specialPressed;
-
+    public int playerID;
+    GameController gc;
     /*
      * This script reads all input, then delegates tasks to the required scripts
      */
@@ -20,10 +30,22 @@ public class Character : MonoBehaviourPun
         rb = GetComponent<Rigidbody2D>();
         moveController = GetComponent<CharacterMovement>();
         animationController = GetComponent<CharacterAnimation>();
+        gc = FindObjectOfType<GameController>();
+    }
+
+    private void Start()
+    {
+        if (gc.isNetworked)
+        {
+            playerID = photonView.ViewID;
+        }
+        isNetworked = gc.isNetworked;
+        currentState = PlayerState.DEFAULT;
     }
 
     private void Update()
     {
+        UpdatePlayerState();
         if (specialPressed && moveController.GetIsGrounded() && moveController.GetVelocity().y == 0)
         {
             animationController.AnimateSpecial("Projectile");
@@ -86,5 +108,35 @@ public class Character : MonoBehaviourPun
                 transform.localScale = new Vector3(2, 2, 1);
             }
         }
+    }
+
+    public void UpdatePlayerState()
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if((rb.velocity.x > 0 && transform.localScale.x < 0) || (rb.velocity.x < 0 && transform.localScale.x > 0))
+        {
+            currentState = PlayerState.ADVANCING;
+        }
+
+        else if ((rb.velocity.x > 0 && transform.localScale.x > 0) || (rb.velocity.x < 0 && transform.localScale.x < 0))
+        {
+            currentState = PlayerState.RETREATING;
+        }
+        
+
+        else if(rb.velocity.y > 0)
+        {
+            currentState = PlayerState.JUMPING;
+        }
+        else
+        {
+            currentState = PlayerState.DEFAULT;
+        }
+    }
+
+    public PlayerState GetCurrentState()
+    {
+        return currentState;
     }
 }

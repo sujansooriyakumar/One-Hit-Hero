@@ -105,8 +105,9 @@ GameObject:
   - component: {fileID: 2110493048538642320}
   - component: {fileID: 2110493048538642323}
   - component: {fileID: -7282307978890087317}
-  - component: {fileID: 375064581316421200}
   - component: {fileID: 8302643441645480247}
+  - component: {fileID: 5687887670324464320}
+  - component: {fileID: 375064581316421200}
   m_Layer: 8
   m_Name: CharacterA
   m_TagString: Player
@@ -376,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isNetworked: 0
+  playerID: 0
 --- !u!114 &2110493048538642323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +395,7 @@ MonoBehaviour:
   attackHitboxes:
   - {fileID: 8962207040444986133}
   - {fileID: 91886376518207774}
+  canAttack: 0
 --- !u!114 &-7282307978890087317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,11 +415,43 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 375064581316421200}
   - {fileID: 8302643441645480247}
+  - {fileID: 5687887670324464320}
+  - {fileID: 375064581316421200}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &8302643441645480247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780909879418778129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+--- !u!114 &5687887670324464320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780909879418778129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &375064581316421200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,28 +468,28 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Fireball
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Jump
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: JumpFwd
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: AntiAir
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Aerial
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Hit
   - Type: 4
     SynchronizeType: 2
     Name: Grounded
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Win
   - Type: 1
     SynchronizeType: 2
@@ -462,21 +497,6 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
---- !u!114 &8302643441645480247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3780909879418778129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
 --- !u!1 &5130547810519741626
 GameObject:
   m_ObjectHideFlags: 0

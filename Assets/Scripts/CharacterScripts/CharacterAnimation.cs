@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ using UnityEngine;
  * Controls the animation for the character
  * as well as attacks. 
  */
-public class CharacterAnimation : MonoBehaviour
+public class CharacterAnimation : MonoBehaviourPun
 {
     Animator anim;
     Rigidbody2D rb;
@@ -14,13 +15,15 @@ public class CharacterAnimation : MonoBehaviour
     private GameObject projectileInst;
     public GameObject projectile, projectileSpawnLoc;
     public BoxCollider2D[] attackHitboxes;
-
-
+    GameController gc;
+    public bool canAttack;
     private void Awake()
     {
+        canAttack = true;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         moveController = GetComponent<CharacterMovement>();
+        gc = GameObject.FindObjectOfType<GameController>();
     }
     private void Update()
     {
@@ -33,17 +36,17 @@ public class CharacterAnimation : MonoBehaviour
         switch (specialName_)
         {
             case "Projectile":
-                if(projectileInst == null) anim.SetTrigger("Fireball");
+                if(projectileInst == null && canAttack) anim.SetTrigger("Fireball");
                 rb.velocity = new Vector2(0, 0);
                 moveController.canMove = false;
                 break;
             case "AntiAir":
-                anim.SetTrigger("AntiAir");
+                if(canAttack) anim.SetTrigger("AntiAir");
                 rb.velocity = new Vector2(0, 0);
                 moveController.canMove = false;
                 break;
             case "Aerial":
-                anim.SetTrigger("Aerial");
+                if(canAttack) anim.SetTrigger("Aerial");
                 moveController.canMove = false;
                 break;
             default:
@@ -63,6 +66,7 @@ public class CharacterAnimation : MonoBehaviour
         if(projectileInst == null)
         {
             projectileInst = Instantiate(projectile, projectileSpawnLoc.transform.position, Quaternion.identity);
+            projectileInst.GetComponent<Projectile>().owner = gameObject;
             Rigidbody2D projectileRB = projectileInst.GetComponent<Rigidbody2D>();
             if (transform.localScale.x < 0) projectileRB.velocity = new Vector2(5.0f, 0.0f);
             else projectileRB.velocity = new Vector2(-5.0f, 0.0f);
@@ -79,6 +83,10 @@ public class CharacterAnimation : MonoBehaviour
             if (c.gameObject != gameObject)
             {
                 c.gameObject.GetComponent<CharacterAnimation>().Kill();
+
+                gc.UpdateScore(GetComponent<Character>().playerID);
+                moveController.canMove = false;
+                canAttack = false;
             }
         }
     }
@@ -91,6 +99,9 @@ public class CharacterAnimation : MonoBehaviour
             if (c.gameObject != gameObject)
             {
                c.gameObject.GetComponent<CharacterAnimation>().Kill();
+               gc.UpdateScore(GetComponent<Character>().playerID);
+                moveController.canMove = false;
+                canAttack = false;
             }
         }
     }
