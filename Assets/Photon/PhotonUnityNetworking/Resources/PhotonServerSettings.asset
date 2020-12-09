@@ -45,6 +45,10 @@ MonoBehaviour:
   - GetPlayerRefs
   - MainMenu
   - ReloadLevel
+  - Rematch
+  - DisableGameOverScreen
+  - AwaitRematch
+  - ResetPositions
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

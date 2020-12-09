@@ -98,9 +98,9 @@ public class NetworkedPlay : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        PhotonNetwork.LeaveRoom();
-
-        PhotonNetwork.LoadLevel("MainMenu");
+        base.OnPlayerLeftRoom(otherPlayer);
+        PhotonNetwork.LoadLevel("NewMainMenu");
     }
+
 }
 

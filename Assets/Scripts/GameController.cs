@@ -13,8 +13,6 @@ public class GameController : MonoBehaviourPun
     public bool paused;
     public int playerOneWins;
     public int playerTwoWins;
-    public GameObject gameOver;
-    GameObject gameoverhud;
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -23,7 +21,9 @@ public class GameController : MonoBehaviourPun
         playerTwoWins = 0;
 
     }
-
+    private void Update()
+    {
+    }
     public void SetCharacter(string name_, int playerID)
     {
         if (playerID == 1) characterSelection = name_;
@@ -48,8 +48,9 @@ public class GameController : MonoBehaviourPun
         else playerTwoWins++;
         if (playerOneWins >= 5 || playerTwoWins >= 5)
         {
-            gameoverhud = Instantiate(gameOver, transform.position, Quaternion.identity);
-
+            playerOneWins = 0;
+            playerTwoWins = 0;
+            FindObjectOfType<PlayerSpawner>().gameOver.SetActive(true);
         }
         else
         {
@@ -57,6 +58,7 @@ public class GameController : MonoBehaviourPun
         }
     }
 
+    [PunRPC]
     public void ResetPositions()
     {
         Character[] players = GameObject.FindObjectsOfType<Character>();
@@ -89,9 +91,18 @@ public class GameController : MonoBehaviourPun
     }
 
     [PunRPC]
-    void ReloadLevel()
+    public void Rematch()
     {
+        ResetPositions();
+
+        HideUI();
+    }
+
+    void HideUI()
+    {
+        FindObjectOfType<PlayerSpawner>().gameOver.SetActive(false);
 
     }
+
 
 }

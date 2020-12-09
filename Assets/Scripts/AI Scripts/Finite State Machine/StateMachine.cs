@@ -1,15 +1,24 @@
-﻿using System.Collections;
+﻿/*
+  *  Sources
+  *  GAME 307 Module 10, Prof. Gail Harris
+  *  AI For Games, Third Edition, Ian Millington
+  * 
+  */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
+    public string stateName;
     IState targetState;
     IState currentState;
     public IState initialState, advanceState, retreatState, projectileState;
     GameObject playerChar;
     public IAction[] actions;
     public float aggression;
+
 
 
     private void Start()
@@ -27,8 +36,8 @@ public class StateMachine : MonoBehaviour
 
     private void Update()
     {
+        stateName = currentState.ToString();
         aggression += Time.deltaTime;
-        Debug.Log(currentState);
         // check and apply transitions, return a list of actions
         ITransition triggered = null;
         // store first transition that triggers

@@ -27,7 +27,7 @@ public class Arrive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GetComponent<CharacterMovement>().canMove) GetComponent<Rigidbody2D>().velocity = new Vector2(GetSteering().x, GetComponent<Rigidbody2D>().velocity.y);
+        if (GetComponent<CharacterMovement>().canMove) GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector3(GetSteering().x, GetComponent<PhysicsPlugin>().GetVelocity().y, 0));
 
     }
 

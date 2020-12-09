@@ -10,7 +10,7 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviourPun
 {
     Animator anim;
-    Rigidbody2D rb;
+    PhysicsPlugin rb;
     CharacterMovement moveController;
     private GameObject projectileInst;
     public GameObject projectile, projectileSpawnLoc;
@@ -21,14 +21,25 @@ public class CharacterAnimation : MonoBehaviourPun
     {
         canAttack = true;
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<PhysicsPlugin>();
         moveController = GetComponent<CharacterMovement>();
         gc = GameObject.FindObjectOfType<GameController>();
     }
     private void Update()
     {
         anim.SetBool("Grounded", moveController.GetIsGrounded());
-        anim.SetFloat("walkSpeed", Mathf.Abs(rb.velocity.x));
+
+        if(transform.localScale.x < 0)
+        {
+            anim.SetFloat("walkSpeed", GetComponent<PhysicsPlugin>().GetVelocity().x);
+
+        }
+
+        else if(transform.localScale.x > 0)
+        {
+            anim.SetFloat("walkSpeed", GetComponent<PhysicsPlugin>().GetVelocity().x * -1);
+
+        }
     }
 
     virtual public void AnimateSpecial(string specialName_)
@@ -37,12 +48,12 @@ public class CharacterAnimation : MonoBehaviourPun
         {
             case "Projectile":
                 if(projectileInst == null && canAttack) anim.SetTrigger("Fireball");
-                rb.velocity = new Vector2(0, 0);
+                rb.UpdateVelocity(new Vector3(0, 0, 0));
                 moveController.canMove = false;
                 break;
             case "AntiAir":
                 if(canAttack) anim.SetTrigger("AntiAir");
-                rb.velocity = new Vector2(0, 0);
+                rb.UpdateVelocity(new Vector3(0, 0, 0)); 
                 moveController.canMove = false;
                 break;
             case "Aerial":
@@ -75,7 +86,7 @@ public class CharacterAnimation : MonoBehaviourPun
 
     virtual protected void AntiAir()
     {
-        rb.velocity = new Vector2(rb.velocity.x, 10.0f);
+        rb.UpdateVelocity(new Vector3(rb.GetVelocity().x, 10.0f, 0));
         moveController.SetIsGrounded(false);
         Collider2D[] cols = Physics2D.OverlapBoxAll(attackHitboxes[1].bounds.center, attackHitboxes[1].bounds.extents, 1.0f, LayerMask.GetMask("Hitbox"));
         foreach (Collider2D c in cols)

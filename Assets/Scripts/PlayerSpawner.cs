@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviourPun
 {
+    public GameObject gameOver;
     bool aSpawned, bSpawned = false;
     [SerializeField] private GameObject playerPrefab = null;
     [SerializeField] public Transform SpawnLocA = null;
@@ -12,7 +13,7 @@ public class PlayerSpawner : MonoBehaviourPun
     GameObject p1, p2;
     GameController gc;
 
-    private void Awake()
+    private void Start()
     {
         gc = FindObjectOfType<GameController>();
         if (gc.isNetworked)
@@ -41,10 +42,7 @@ public class PlayerSpawner : MonoBehaviourPun
             p2.GetComponent<Character>().playerID = 2001;
         }
     }
-    private void Start()
-    {
-        
-    }
+
 
     [PunRPC]
     void CheckSpawned()

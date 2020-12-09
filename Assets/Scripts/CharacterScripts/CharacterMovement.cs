@@ -9,51 +9,85 @@ using UnityEngine.InputSystem;
  */
 public class CharacterMovement : MonoBehaviourPun
 {
-    Rigidbody2D rb;
+    PhysicsPlugin rb;
     Character character;
     CharacterAnimation animationController;
     private Vector3 velocity;
-    private bool isGrounded;
+    public bool isGrounded;
     public bool canMove;
+    public bool isPlayer;
     private float speed;
    
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
         animationController = GetComponent<CharacterAnimation>();
         speed = 2.0f;
         canMove = true;
     }
+    private void Start()
+    {
+        rb = GetComponent<PhysicsPlugin>();
 
+    }
     private void FixedUpdate()
     {
-        if (character.isNetworked)
+
+        if (isPlayer)
         {
-            if (canMove && photonView.IsMine) rb.velocity = new Vector3(velocity.x * speed, rb.velocity.y);
+            if (FindObjectOfType<GameController>().isNetworked)
+            {
+                if (canMove && photonView.IsMine) rb.UpdateVelocity(new Vector3(velocity.x * speed, rb.GetVelocity().y, 0));
+                if (!isGrounded && photonView.IsMine)
+                {
+                    rb.UpdateVelocity(new Vector3(velocity.x, rb.GetVelocity().y - 0.2f));
+                }
+
+            }
+
+            else if (FindObjectOfType<GameController>().isNetworked == false)
+            {
+                if (canMove) rb.UpdateVelocity(new Vector3(velocity.x * speed, rb.GetVelocity().y, 0));
+                if (!isGrounded)
+                {
+                    rb.UpdateVelocity(new Vector3(velocity.x, rb.GetVelocity().y - 0.2f));
+                }
+
+            }
         }
 
-        else
+        else if (!isPlayer)
         {
-            if(canMove) rb.velocity = new Vector3(velocity.x * speed, rb.velocity.y);
+            if (!isGrounded)
+            {
+                rb.UpdateVelocity(new Vector3(velocity.x, rb.GetVelocity().y - 0.2f));
+            }
         }
-        if(isGrounded && canMove && velocity.y > 0)
+        if (isGrounded && canMove && velocity.y > 0)
         {
-            Jump(10.0f);
+            Jump(10);
         }
+     
+
+
+    }
+
+    private void LateUpdate()
+    {
+       
     }
 
     virtual public void Jump(float jumpForce_)
     {
         if (velocity.y > 0 && isGrounded && canMove)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce_);
-            
+            rb.UpdateVelocity(new Vector3(rb.GetVelocity().x, jumpForce_, 0));
             isGrounded = false;
             canMove = false;
-            animationController.AnimateJump(rb.velocity.x);
-            
+            animationController.AnimateJump(rb.GetVelocity().x);
+
+
         }
     }
 
@@ -77,17 +111,23 @@ public class CharacterMovement : MonoBehaviourPun
         canMove = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Ground")
-        {
-            isGrounded = true;
-        }
-    }
+
 
     virtual public void SetIsGrounded(bool isGrounded_)
     {
         isGrounded = isGrounded_;
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            rb.UpdateVelocity(new Vector3(0, 0, 0));
+            isGrounded = true;
+
+        }
+
+    }
+
+ 
 }

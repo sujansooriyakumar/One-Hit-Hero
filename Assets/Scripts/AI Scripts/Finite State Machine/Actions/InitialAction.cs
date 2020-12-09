@@ -24,7 +24,7 @@ public class InitialAction : IAction
         GameObject npcRef = sm.gameObject;
         if(npcRef.GetComponent<Arrive>()) npcRef.GetComponent<Arrive>().enabled = false;
         if(npcRef.GetComponent<Flee>()) npcRef.GetComponent<Flee>().enabled = false;
-        npcRef.GetComponent<Rigidbody2D>().velocity = new Vector2(0, npcRef.GetComponent<Rigidbody2D>().velocity.y);
+        npcRef.GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector2(0, npcRef.GetComponent<PhysicsPlugin>().GetVelocity().y));
     }
 
     public bool Interrupt()

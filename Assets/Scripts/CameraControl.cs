@@ -28,7 +28,7 @@ public class CameraControl : MonoBehaviourPun
 
     private void Update()
     {
-        photonView.RPC("GetPlayerRefs", RpcTarget.All);
+        if(FindObjectOfType<GameController>().isNetworked) photonView.RPC("GetPlayerRefs", RpcTarget.All);
         if (playersRef.Length >= 2)
         {
             float distance = Vector3.Distance(playersRef[0].transform.position, playersRef[1].transform.position);
@@ -46,21 +46,21 @@ public class CameraControl : MonoBehaviourPun
 
             if (distance < maxDistance)
             {
-                if (leftPlayer.GetComponent<Rigidbody2D>().velocity.x > 0)
+                if (leftPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x > 0)
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(maxX, 0, transform.position.z), Time.deltaTime);
                 }
-                if (leftPlayer.GetComponent<Rigidbody2D>().velocity.x < 0)
+                if (leftPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x < 0)
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(minX, 0, transform.position.z), Time.deltaTime);
                 }
-                if (rightPlayer.GetComponent<Rigidbody2D>().velocity.x < 0)
+                if (rightPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x < 0)
 
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(minX, 0, transform.position.z), Time.deltaTime);
                 }
 
-                if (rightPlayer.GetComponent<Rigidbody2D>().velocity.x > 0)
+                if (rightPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x > 0)
 
                 {
                     transform.position = Vector3.Lerp(transform.position, new Vector3(maxX, 0, transform.position.z), Time.deltaTime);

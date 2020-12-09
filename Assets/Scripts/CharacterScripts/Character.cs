@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Character : MonoBehaviourPun
 {
-
+    public bool rematchReady;
     public enum PlayerState
     {
         ADVANCING,
@@ -18,7 +18,7 @@ public class Character : MonoBehaviourPun
     public bool isNetworked;
     private CharacterMovement moveController;
     private CharacterAnimation animationController;
-    private Rigidbody2D rb;
+    private PhysicsPlugin rb;
     private bool specialPressed;
     public int playerID;
     GameController gc;
@@ -27,10 +27,11 @@ public class Character : MonoBehaviourPun
      */
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<PhysicsPlugin>();
         moveController = GetComponent<CharacterMovement>();
         animationController = GetComponent<CharacterAnimation>();
         gc = FindObjectOfType<GameController>();
+        rematchReady = false;
     }
 
     private void Start()
@@ -112,20 +113,20 @@ public class Character : MonoBehaviourPun
 
     public void UpdatePlayerState()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        PhysicsPlugin rb = GetComponent<PhysicsPlugin>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if((rb.velocity.x > 0 && transform.localScale.x < 0) || (rb.velocity.x < 0 && transform.localScale.x > 0))
+        if((rb.GetVelocity().x > 0 && transform.localScale.x < 0) || (rb.GetVelocity().x < 0 && transform.localScale.x > 0))
         {
             currentState = PlayerState.ADVANCING;
         }
 
-        else if ((rb.velocity.x > 0 && transform.localScale.x > 0) || (rb.velocity.x < 0 && transform.localScale.x < 0))
+        else if ((rb.GetVelocity().x > 0 && transform.localScale.x > 0) || (rb.GetVelocity().x < 0 && transform.localScale.x < 0))
         {
             currentState = PlayerState.RETREATING;
         }
         
 
-        else if(rb.velocity.y > 0)
+        else if(rb.GetVelocity().y > 0)
         {
             currentState = PlayerState.JUMPING;
         }
@@ -138,5 +139,11 @@ public class Character : MonoBehaviourPun
     public PlayerState GetCurrentState()
     {
         return currentState;
+    }
+
+    [PunRPC]
+    public void AwaitRematch()
+    {
+        rematchReady = true;
     }
 }
