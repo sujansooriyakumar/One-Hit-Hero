@@ -1,0 +1,898 @@
+fileFormatVersion: 2
+guid: 4ce0dbc7a526c474bb647b2c08481916
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2291639896883469748
+    second: brettwalk_0
+  - first:
+      213: -8574558312928979179
+    second: brettwalk_1
+  - first:
+      213: -4791863279689226448
+    second: brettwalk_2
+  - first:
+      213: 8294334141622911076
+    second: brettwalk_3
+  - first:
+      213: -5186134641475571359
+    second: brettwalk_4
+  - first:
+      213: -8041016141914811236
+    second: brettwalk_5
+  - first:
+      213: 6308696204637919630
+    second: brettwalk_6
+  - first:
+      213: -2328638877883656763
+    second: brettwalk_7
+  - first:
+      213: -5200952437509900852
+    second: brettwalk_8
+  - first:
+      213: 2009472641749263162
+    second: brettwalk_9
+  - first:
+      213: -5886604606515932743
+    second: brettwalk_10
+  - first:
+      213: 6376578736900213361
+    second: brettwalk_11
+  - first:
+      213: 5056386963849439364
+    second: brettwalk_12
+  - first:
+      213: -7719345126037271675
+    second: brettwalk_13
+  - first:
+      213: 8127447129155480145
+    second: brettwalk_14
+  - first:
+      213: 6417623808315536647
+    second: brettwalk_15
+  - first:
+      213: -1270061340793111642
+    second: brettwalk_16
+  - first:
+      213: -1948023263420774155
+    second: brettwalk_17
+  - first:
+      213: 1658595880119747534
+    second: brettwalk_18
+  - first:
+      213: 8880409457348153561
+    second: brettwalk_19
+  - first:
+      213: 4459297942270774455
+    second: brettwalk_20
+  - first:
+      213: 2526850243852990463
+    second: brettwalk_21
+  - first:
+      213: 6805305824226027979
+    second: brettwalk_22
+  - first:
+      213: 3883271294712631722
+    second: brettwalk_23
+  - first:
+      213: 532518878828542350
+    second: brettwalk_24
+  - first:
+      213: -876579054629456526
+    second: brettwalk_25
+  - first:
+      213: 1378591759838158616
+    second: brettwalk_26
+  - first:
+      213: 2079338093162783733
+    second: brettwalk_27
+  - first:
+      213: -7166815663568262739
+    second: brettwalk_28
+  - first:
+      213: 9198349850549098399
+    second: brettwalk_29
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: brettwalk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 503
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c42e529c7a57230e0800000000000000
+      internalID: -2291639896883469748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_1
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 0
+        width: 518
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 15, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517def3f4ac010980800000000000000
+      internalID: -8574558312928979179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_2
+      rect:
+        serializedVersion: 2
+        x: 1114
+        y: 0
+        width: 500
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 037a2e94cb1ef7db0800000000000000
+      internalID: -4791863279689226448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_3
+      rect:
+        serializedVersion: 2
+        x: 1673
+        y: 0
+        width: 499
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46004dfd4f46b1370800000000000000
+      internalID: 8294334141622911076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_4
+      rect:
+        serializedVersion: 2
+        x: 2215
+        y: 0
+        width: 514
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 161308955062708b0800000000000000
+      internalID: -5186134641475571359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_5
+      rect:
+        serializedVersion: 2
+        x: 2768
+        y: 0
+        width: 503
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c945cfb0c62986090800000000000000
+      internalID: -8041016141914811236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_6
+      rect:
+        serializedVersion: 2
+        x: 3316
+        y: 0
+        width: 509
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e895c41f5cdfc8750800000000000000
+      internalID: 6308696204637919630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_7
+      rect:
+        serializedVersion: 2
+        x: 3843
+        y: 0
+        width: 520
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 13, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c5949937430fafd0800000000000000
+      internalID: -2328638877883656763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_8
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 0
+        width: 503
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc5358c505182d7b0800000000000000
+      internalID: -5200952437509900852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_9
+      rect:
+        serializedVersion: 2
+        x: 4938
+        y: 0
+        width: 503
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a33a45598b413eb10800000000000000
+      internalID: 2009472641749263162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_10
+      rect:
+        serializedVersion: 2
+        x: 5473
+        y: 0
+        width: 505
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b190778c449e4ea0800000000000000
+      internalID: -5886604606515932743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_11
+      rect:
+        serializedVersion: 2
+        x: 6013
+        y: 0
+        width: 518
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a0f3f93982e7850800000000000000
+      internalID: 6376578736900213361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_12
+      rect:
+        serializedVersion: 2
+        x: 6552
+        y: 0
+        width: 503
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 488692b5725eb2640800000000000000
+      internalID: 5056386963849439364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_13
+      rect:
+        serializedVersion: 2
+        x: 7073
+        y: 0
+        width: 515
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58bc7e7b1806fd490800000000000000
+      internalID: -7719345126037271675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_14
+      rect:
+        serializedVersion: 2
+        x: 7582
+        y: 0
+        width: 533
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15aa4185a1e7ac070800000000000000
+      internalID: 8127447129155480145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_15
+      rect:
+        serializedVersion: 2
+        x: 8291
+        y: 0
+        width: 553
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 705bcb40adaff0950800000000000000
+      internalID: 6417623808315536647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_16
+      rect:
+        serializedVersion: 2
+        x: 8976
+        y: 0
+        width: 529
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abf11b80f5df5ee0800000000000000
+      internalID: -1270061340793111642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_17
+      rect:
+        serializedVersion: 2
+        x: 9617
+        y: 0
+        width: 521
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f88b99b92b37f4e0800000000000000
+      internalID: -1948023263420774155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_18
+      rect:
+        serializedVersion: 2
+        x: 10250
+        y: 0
+        width: 523
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec3c6745a24840710800000000000000
+      internalID: 1658595880119747534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_19
+      rect:
+        serializedVersion: 2
+        x: 10842
+        y: 0
+        width: 499
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d0914dd95d8d3b70800000000000000
+      internalID: 8880409457348153561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_20
+      rect:
+        serializedVersion: 2
+        x: 11490
+        y: 0
+        width: 497
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bc0ea42adb92ed30800000000000000
+      internalID: 4459297942270774455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_21
+      rect:
+        serializedVersion: 2
+        x: 12010
+        y: 0
+        width: 505
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff77771b8ec211320800000000000000
+      internalID: 2526850243852990463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_22
+      rect:
+        serializedVersion: 2
+        x: 12539
+        y: 0
+        width: 503
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9a3e0579d417e50800000000000000
+      internalID: 6805305824226027979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_23
+      rect:
+        serializedVersion: 2
+        x: 13185
+        y: 0
+        width: 501
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa151d70ba624e530800000000000000
+      internalID: 3883271294712631722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_24
+      rect:
+        serializedVersion: 2
+        x: 13705
+        y: 0
+        width: 501
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e89b3c05913e36700800000000000000
+      internalID: 532518878828542350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_25
+      rect:
+        serializedVersion: 2
+        x: 14338
+        y: 0
+        width: 499
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 275734f7ef3c5d3f0800000000000000
+      internalID: -876579054629456526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_26
+      rect:
+        serializedVersion: 2
+        x: 15019
+        y: 0
+        width: 507
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f1f67c6edb12310800000000000000
+      internalID: 1378591759838158616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_27
+      rect:
+        serializedVersion: 2
+        x: 15659
+        y: 0
+        width: 500
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f3e7ea9afa4bdc10800000000000000
+      internalID: 2079338093162783733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_28
+      rect:
+        serializedVersion: 2
+        x: 16261
+        y: 0
+        width: 499
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9ee4a102b5a8c90800000000000000
+      internalID: -7166815663568262739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brettwalk_29
+      rect:
+        serializedVersion: 2
+        x: 16890
+        y: 0
+        width: 503
+        height: 1156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f971fb1447a17af70800000000000000
+      internalID: 9198349850549098399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -102,11 +102,11 @@ public class Character : MonoBehaviourPun
 
             if (p2.transform.position.x > transform.position.x)
             {
-                transform.localScale = new Vector3(-2, 2, 1);
+                transform.rotation = Quaternion.Euler(0, 90, 0);
             }
             else if (p2.transform.position.x < transform.position.x)
             {
-                transform.localScale = new Vector3(2, 2, 1);
+                transform.rotation = Quaternion.Euler(0, 270, 0);
             }
         }
     }

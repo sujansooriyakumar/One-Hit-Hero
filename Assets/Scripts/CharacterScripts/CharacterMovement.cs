@@ -17,13 +17,14 @@ public class CharacterMovement : MonoBehaviourPun
     public bool canMove;
     public bool isPlayer;
     private float speed;
+
    
 
     private void Awake()
     {
         character = GetComponent<Character>();
         animationController = GetComponent<CharacterAnimation>();
-        speed = 2.0f;
+        speed = 3.0f;
         canMove = true;
     }
     private void Start()
@@ -33,7 +34,7 @@ public class CharacterMovement : MonoBehaviourPun
     }
     private void FixedUpdate()
     {
-
+        
         if (isPlayer)
         {
             if (FindObjectOfType<GameController>().isNetworked)
@@ -66,9 +67,14 @@ public class CharacterMovement : MonoBehaviourPun
         }
         if (isGrounded && canMove && velocity.y > 0)
         {
-            Jump(10);
+            animationController.AnimateJump(rb.GetVelocity().x);
+            GetComponent<Animator>().SetBool("Grounded", false);
+
+            velocity.y = 0;
+            canMove = false;
+
         }
-     
+
 
 
     }
@@ -80,15 +86,14 @@ public class CharacterMovement : MonoBehaviourPun
 
     virtual public void Jump(float jumpForce_)
     {
-        if (velocity.y > 0 && isGrounded && canMove)
-        {
+       
             rb.UpdateVelocity(new Vector3(rb.GetVelocity().x, jumpForce_, 0));
             isGrounded = false;
             canMove = false;
-            animationController.AnimateJump(rb.GetVelocity().x);
 
 
-        }
+
+        
     }
 
     virtual public Vector3 GetVelocity()
@@ -124,10 +129,26 @@ public class CharacterMovement : MonoBehaviourPun
         {
             rb.UpdateVelocity(new Vector3(0, 0, 0));
             isGrounded = true;
+            SetCanMove();
+
 
         }
 
     }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            rb.UpdateVelocity(new Vector3(0, 0, 0));
+            GetComponent<Animator>().SetBool("Grounded", true);
 
- 
+            isGrounded = true;
+        }
+    }
+
+    public void Collision()
+    {
+    
+    }
+
 }
