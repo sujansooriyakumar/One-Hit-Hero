@@ -9,41 +9,45 @@ using UnityEngine;
  */
 public class CharacterAnimation : MonoBehaviourPun
 {
-    bool aerialHitbox; 
-    Animator anim;
-    PhysicsPlugin rb;
-    CharacterMovement moveController;
-    private GameObject projectileInst;
+    bool aerialHitbox;
+    bool antiAirHitbox;
+    protected Animator anim;
+    protected PhysicsPlugin rb;
+    protected CharacterMovement moveController;
+    protected GameObject projectileInst;
     public GameObject projectile, projectileSpawnLoc;
     public BoxCollider[] attackHitboxes;
-    PhysicsPlugin physics;
     GameController gc;
     public bool canAttack;
-    private void Awake()
+    protected virtual void Awake()
     {
         canAttack = true;
         anim = GetComponent<Animator>();
         rb = GetComponent<PhysicsPlugin>();
         moveController = GetComponent<CharacterMovement>();
         gc = GameObject.FindObjectOfType<GameController>();
-        physics = GetComponent<PhysicsPlugin>();
     }
-    private void Update()
+    protected virtual void Update()
     {
         if (aerialHitbox)
         {
             Aerial();
         }
 
+        if (antiAirHitbox)
+        {
+            AntiAir();
+        }
+
         // if player facing left
         if (transform.rotation.eulerAngles.y == 270)
         {
-            if (physics.GetVelocity().x < 0)
+            if (rb.GetVelocity().x < 0)
             {
                 anim.SetBool("Walk Forward", true);
                 anim.SetBool("Walk Backward", false);
             }
-            else if (physics.GetVelocity().x > 0)
+            else if (rb.GetVelocity().x > 0)
             {
                 anim.SetBool("Walk Forward", false);
                 anim.SetBool("Walk Backward", true);
@@ -59,12 +63,12 @@ public class CharacterAnimation : MonoBehaviourPun
 
         if (transform.rotation.eulerAngles.y == 90)
         {
-            if(physics.GetVelocity().x > 0)
+            if(rb.GetVelocity().x > 0)
             {
                 anim.SetBool("Walk Forward", true);
                 anim.SetBool("Walk Backward", false);
             }
-            else if (physics.GetVelocity().x < 0)
+            else if (rb.GetVelocity().x < 0)
             {
                 anim.SetBool("Walk Forward", false);
                 anim.SetBool("Walk Backward", true);
@@ -91,6 +95,7 @@ public class CharacterAnimation : MonoBehaviourPun
                 if(canAttack) anim.SetTrigger("UppercutTrigger");
                 rb.UpdateVelocity(new Vector3(0, 0, 0)); 
                 moveController.canMove = false;
+                anim.SetBool("Grounded", false);
                 break;
             case "Aerial":
                 if(canAttack) anim.SetTrigger("HighKickTrigger");
@@ -106,13 +111,32 @@ public class CharacterAnimation : MonoBehaviourPun
     {
         
         if (velocity_ == 0) anim.SetTrigger("JumpTrigger");
-        if((transform.localScale.x > 0 && physics.GetVelocity().x > 0) || (transform.localScale.x < 0 && physics.GetVelocity().x < 0)) 
+        if(transform.rotation.eulerAngles.y == 90)
         {
-            anim.SetTrigger("JumpForwardTrigger");
+            // facing right
+            if(rb.GetVelocity().x > 0)
+            {
+                anim.SetTrigger("JumpForwardTrigger");
+            }
+
+            if (rb.GetVelocity().x < 0)
+            {
+                anim.SetTrigger("JumpBackwardTrigger");
+            }
         }
-        if ((transform.localScale.x > 0 && physics.GetVelocity().x < 0) || (transform.localScale.x < 0 && physics.GetVelocity().x > 0))
+
+        if (transform.rotation.eulerAngles.y == 270)
         {
-            anim.SetTrigger("JumpBackwardTrigger");
+            // facing left
+            if (rb.GetVelocity().x < 0)
+            {
+                anim.SetTrigger("JumpForwardTrigger");
+            }
+
+            if (rb.GetVelocity().x > 0)
+            {
+                anim.SetTrigger("JumpBackwardTrigger");
+            }
         }
     }
 
@@ -122,7 +146,7 @@ public class CharacterAnimation : MonoBehaviourPun
         {
             projectileInst = Instantiate(projectile, projectileSpawnLoc.transform.position, Quaternion.identity);
             projectileInst.GetComponent<Projectile>().owner = gameObject;
-            Rigidbody2D projectileRB = projectileInst.GetComponent<Rigidbody2D>();
+            Rigidbody projectileRB = projectileInst.GetComponent<Rigidbody>();
             if (transform.rotation.eulerAngles.y == 90) projectileRB.velocity = new Vector2(5.0f, 0.0f);
             else projectileRB.velocity = new Vector2(-5.0f, 0.0f);
         }
@@ -130,8 +154,10 @@ public class CharacterAnimation : MonoBehaviourPun
 
     virtual protected void AntiAir()
     {
-        rb.UpdateVelocity(new Vector3(rb.GetVelocity().x, 10.0f, 0));
+        anim.SetBool("Grounded", false);
+        rb.UpdateVelocity(new Vector3(rb.GetVelocity().x, 5.0f, 0));
         moveController.SetIsGrounded(false);
+        moveController.canMove = false;
         // Collider2D[] cols = Physics2D.OverlapBoxAll(attackHitboxes[1].bounds.center, attackHitboxes[1].bounds.extents, 1.0f, LayerMask.GetMask("Hitbox"));
         Collider[] cols = Physics.OverlapBox(attackHitboxes[0].bounds.center, attackHitboxes[0].bounds.extents, Quaternion.identity, LayerMask.GetMask("Hitbox"));
 
@@ -139,12 +165,10 @@ public class CharacterAnimation : MonoBehaviourPun
         {
             if (c.gameObject != gameObject)
             {
-                Debug.Log(c.gameObject.name);
 
                 c.gameObject.GetComponent<CharacterAnimation>().Kill();
 
                 gc.UpdateScore(GetComponent<Character>().playerID);
-                moveController.canMove = false;
                 canAttack = false;
             }
         }
@@ -180,6 +204,16 @@ public class CharacterAnimation : MonoBehaviourPun
         if (val_ == 0) aerialHitbox = false;
     }
 
+    virtual public void SetAntiAirHitbox(int val)
+    {
+        if (val == 1) antiAirHitbox = true;
+        if (val == 0) antiAirHitbox = false;
+    }
+
+    public Animator GetAnimator()
+    {
+        return anim;
+    }
     
   
 }

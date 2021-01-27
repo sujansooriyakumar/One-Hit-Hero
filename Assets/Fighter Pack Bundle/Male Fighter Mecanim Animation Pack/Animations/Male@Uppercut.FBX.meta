@@ -409,7 +409,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 20.6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -419,7 +419,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
@@ -429,15 +429,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.9907834
-        functionName: SetCanMove
+      - time: 0.23125
+        functionName: SetAntiAirHitbox
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 0
+        intParameter: 1
         messageOptions: 0
-      - time: 0.23125
-        functionName: AntiAir
+      - time: 0.7919708
+        functionName: SetAntiAirHitbox
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

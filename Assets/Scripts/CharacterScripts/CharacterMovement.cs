@@ -20,19 +20,19 @@ public class CharacterMovement : MonoBehaviourPun
 
    
 
-    private void Awake()
+    protected virtual void Awake()
     {
         character = GetComponent<Character>();
         animationController = GetComponent<CharacterAnimation>();
         speed = 3.0f;
         canMove = true;
     }
-    private void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<PhysicsPlugin>();
 
     }
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         
         if (isPlayer)
@@ -68,7 +68,7 @@ public class CharacterMovement : MonoBehaviourPun
         if (isGrounded && canMove && velocity.y > 0)
         {
             animationController.AnimateJump(rb.GetVelocity().x);
-            GetComponent<Animator>().SetBool("Grounded", false);
+            GetComponent<CharacterAnimation>().GetAnimator().SetBool("Grounded", false);
 
             velocity.y = 0;
             canMove = false;
@@ -79,10 +79,7 @@ public class CharacterMovement : MonoBehaviourPun
 
     }
 
-    private void LateUpdate()
-    {
-       
-    }
+
 
     virtual public void Jump(float jumpForce_)
     {
@@ -114,6 +111,7 @@ public class CharacterMovement : MonoBehaviourPun
     virtual public void SetCanMove()
     {
         canMove = true;
+        animationController.canAttack = true;
     }
 
 
@@ -123,32 +121,29 @@ public class CharacterMovement : MonoBehaviourPun
         isGrounded = isGrounded_;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
             rb.UpdateVelocity(new Vector3(0, 0, 0));
             isGrounded = true;
-            SetCanMove();
 
 
         }
 
     }
-    private void OnTriggerEnter(Collider collision)
+    protected virtual void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             rb.UpdateVelocity(new Vector3(0, 0, 0));
-            GetComponent<Animator>().SetBool("Grounded", true);
+            GetComponent<CharacterAnimation>().GetAnimator().SetBool("Grounded", true);
 
             isGrounded = true;
         }
     }
 
-    public void Collision()
-    {
-    
-    }
+   
+ 
 
 }

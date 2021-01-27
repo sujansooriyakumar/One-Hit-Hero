@@ -25,7 +25,7 @@ public class Character : MonoBehaviourPun
     /*
      * This script reads all input, then delegates tasks to the required scripts
      */
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<PhysicsPlugin>();
         moveController = GetComponent<CharacterMovement>();
@@ -34,7 +34,7 @@ public class Character : MonoBehaviourPun
         rematchReady = false;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         if (gc.isNetworked)
         {
@@ -44,24 +44,29 @@ public class Character : MonoBehaviourPun
         currentState = PlayerState.DEFAULT;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         UpdatePlayerState();
-        if (specialPressed && moveController.GetIsGrounded() && moveController.GetVelocity().y == 0)
+        if (specialPressed && moveController.GetIsGrounded() && moveController.GetVelocity().y == 0 && animationController.canAttack)
         {
             animationController.AnimateSpecial("Projectile");
+            animationController.canAttack = false;
             specialPressed = false;
         }
 
-        else if(specialPressed && moveController.GetIsGrounded() && moveController.GetVelocity().y < 0)
+        else if(specialPressed && moveController.GetIsGrounded() && animationController.canAttack)
         {
             animationController.AnimateSpecial("AntiAir");
+            animationController.canAttack = false;
+
             specialPressed = false;
         }
 
-        else if(specialPressed && moveController.GetIsGrounded() == false)
+        else if(specialPressed && GetComponent<CharacterMovement>().GetIsGrounded() == false && animationController.canAttack)
         {
             animationController.AnimateSpecial("Aerial");
+            animationController.canAttack = false;
+
             specialPressed = false;
         }
 
@@ -71,19 +76,19 @@ public class Character : MonoBehaviourPun
             CheckDirection();
         }
     }
-    virtual public void SpecialEvent(InputAction.CallbackContext context)
+    public virtual void SpecialEvent(InputAction.CallbackContext context)
     {
         specialPressed = context.ReadValueAsButton();
     }
 
-    public void MoveEvent(InputAction.CallbackContext context)
+    public virtual void MoveEvent(InputAction.CallbackContext context)
     {
         moveController.SetVelocity(context.ReadValue<Vector2>());
       
     }
 
     [PunRPC]
-    private void CheckDirection()
+    protected virtual void CheckDirection()
     {
         Character p2 = null;
         Character[] players = GameObject.FindObjectsOfType<Character>();
@@ -111,7 +116,7 @@ public class Character : MonoBehaviourPun
         }
     }
 
-    public void UpdatePlayerState()
+    protected virtual void UpdatePlayerState()
     {
         PhysicsPlugin rb = GetComponent<PhysicsPlugin>();
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -142,7 +147,7 @@ public class Character : MonoBehaviourPun
     }
 
     [PunRPC]
-    public void AwaitRematch()
+    protected virtual void AwaitRematch()
     {
         rematchReady = true;
     }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0d62c6437202740b2a68841c1da8cd, type: 3}
   m_Name: CharacterB
   m_EditorClassIdentifier: 
-  characterName: CharacterB
-  characterSprite: {fileID: 21300000, guid: 2b5b77cfa8ccd0949915de77c596f15a, type: 3}
+  characterName: BoomerangBob
+  characterSprite: {fileID: 21300000, guid: 0997da50dcde6644db3a483b97d28018, type: 3}

@@ -11,14 +11,7 @@ public class CharacterCollider : MonoBehaviour
     }
     
 
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            GetComponentInParent<CharacterMovement>().Collision();
-        }
-
-    }
+  
 
     
 }
