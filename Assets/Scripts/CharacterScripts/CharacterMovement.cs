@@ -16,7 +16,7 @@ public class CharacterMovement : MonoBehaviourPun
     public bool isGrounded;
     public bool canMove;
     public bool isPlayer;
-    private float speed;
+    protected float speed;
 
    
 

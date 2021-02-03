@@ -9,15 +9,15 @@ using UnityEngine;
  */
 public class CharacterAnimation : MonoBehaviourPun
 {
-    bool aerialHitbox;
-    bool antiAirHitbox;
+    public bool aerialHitbox;
+    public bool antiAirHitbox;
     protected Animator anim;
     protected PhysicsPlugin rb;
     protected CharacterMovement moveController;
     protected GameObject projectileInst;
     public GameObject projectile, projectileSpawnLoc;
     public BoxCollider[] attackHitboxes;
-    GameController gc;
+    protected GameController gc;
     public bool canAttack;
     protected virtual void Awake()
     {
@@ -87,19 +87,29 @@ public class CharacterAnimation : MonoBehaviourPun
         switch (specialName_)
         {
             case "Projectile":
-                if(projectileInst == null && canAttack) anim.SetTrigger("RangeAttack1Trigger");
-                rb.UpdateVelocity(new Vector3(0, 0, 0));
-                moveController.canMove = false;
+                if (projectileInst == null && canAttack)
+                {
+                    moveController.canMove = false;
+
+                    anim.SetTrigger("RangeAttack1Trigger");
+                    rb.UpdateVelocity(new Vector3(0, 0, 0));
+                }
                 break;
             case "AntiAir":
-                if(canAttack) anim.SetTrigger("UppercutTrigger");
-                rb.UpdateVelocity(new Vector3(0, 0, 0)); 
-                moveController.canMove = false;
-                anim.SetBool("Grounded", false);
+                if (canAttack)
+                {
+                    anim.SetTrigger("UppercutTrigger");
+                    rb.UpdateVelocity(new Vector3(0, 0, 0));
+                    moveController.canMove = false;
+                    anim.SetBool("Grounded", false);
+                }
                 break;
             case "Aerial":
-                if(canAttack) anim.SetTrigger("HighKickTrigger");
-                moveController.canMove = false;
+                if (canAttack)
+                {
+                    anim.SetTrigger("HighKickTrigger");
+                    moveController.canMove = false;
+                }
                 break;
             default:
                 Debug.Log("default");
@@ -167,7 +177,7 @@ public class CharacterAnimation : MonoBehaviourPun
             {
 
                 c.gameObject.GetComponent<CharacterAnimation>().Kill();
-
+                antiAirHitbox = false;
                 gc.UpdateScore(GetComponent<Character>().playerID);
                 canAttack = false;
             }
@@ -183,11 +193,11 @@ public class CharacterAnimation : MonoBehaviourPun
 
             if (c.gameObject != gameObject)
             {
-                Debug.Log(c.gameObject.name);
+               aerialHitbox = false;
                c.gameObject.GetComponent<CharacterAnimation>().Kill();
                gc.UpdateScore(GetComponent<Character>().playerID);
-                moveController.canMove = false;
-                canAttack = false;
+               moveController.canMove = false;
+               canAttack = false;
             }
         }
     }

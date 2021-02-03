@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: CharacterA
   m_EditorClassIdentifier: 
   characterName: TwistingTracy
-  characterSprite: {fileID: 21300000, guid: 6c8725f3f0289b74aa3368a255f8985c, type: 3}
+  characterSprite: {fileID: 21300000, guid: c9e890dcbd3e8de4986b3f153b5e034b, type: 3}

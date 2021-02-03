@@ -13,13 +13,15 @@ public class Twister : Projectile
     {
         if (other.gameObject.tag == "Player" && other.gameObject.Equals(owner) == false)
         {
-            Debug.Log(other.gameObject.name);
+
 
             other.gameObject.GetComponent<CharacterAnimation>().Kill();
             if (gc) gc.UpdateScore(owner.GetComponent<Character>().playerID);
-            //owner.GetComponent<CharacterAnimation>().canAttack = false;
+            owner.GetComponent<CharacterAnimation>().canAttack = false;
             owner.GetComponent<CharacterMovement>().canMove = false;
             other.gameObject.GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector3(0, 0, 0));
+            owner.GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector3(0, 0, 0));
+
             Destroy(gameObject);
 
         }

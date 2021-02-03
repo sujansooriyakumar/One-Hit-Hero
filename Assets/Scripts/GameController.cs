@@ -61,18 +61,12 @@ public class GameController : MonoBehaviourPun
     [PunRPC]
     public void ResetPositions()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Character[] players = GameObject.FindObjectsOfType<Character>();
         foreach(Character c in players)
         {
-            if(c.playerID == 1001)
-            {
-                c.transform.position = FindObjectOfType<PlayerSpawner>().SpawnLocA.position;
-            }
-
-            else
-            {
-                c.transform.position = FindObjectOfType<PlayerSpawner>().SpawnLocB.position;
-            }
+          
+          
 
             if (playerOneWins < 5 && playerTwoWins < 5)
             {
@@ -80,7 +74,7 @@ public class GameController : MonoBehaviourPun
                 c.GetComponent<CharacterAnimation>().canAttack = true;
             }
         }
-        Camera.main.transform.position = new Vector3(0, 0, -10);
+        //Camera.main.transform.position = new Vector3(0, 0, -10);
     }
 
 

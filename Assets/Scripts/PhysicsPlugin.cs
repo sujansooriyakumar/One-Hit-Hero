@@ -49,6 +49,16 @@ public class PhysicsPlugin : MonoBehaviourPun, IPunObservable
         transform.position = new Vector3(rb.posX, rb.posY, rb.posZ);
 
     }
+    public void UpdatePosition(Vector3 pos_)
+    {
+        rb.posX = pos_.x;
+        rb.posY = pos_.y;
+        rb.posZ = pos_.z;
+        rb = (RigidBody)Marshal.PtrToStructure(rbPtr, typeof(RigidBody));
+        transform.position = new Vector3(rb.posX, rb.posY, rb.posZ);
+
+
+    }
 
 
 

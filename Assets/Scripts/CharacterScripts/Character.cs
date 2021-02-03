@@ -54,7 +54,7 @@ public class Character : MonoBehaviourPun
             specialPressed = false;
         }
 
-        else if(specialPressed && moveController.GetIsGrounded() && animationController.canAttack)
+        else if (specialPressed && moveController.GetIsGrounded() && animationController.canAttack)
         {
             animationController.AnimateSpecial("AntiAir");
             animationController.canAttack = false;
@@ -62,11 +62,15 @@ public class Character : MonoBehaviourPun
             specialPressed = false;
         }
 
-        else if(specialPressed && GetComponent<CharacterMovement>().GetIsGrounded() == false && animationController.canAttack)
+        else if (specialPressed && GetComponent<CharacterMovement>().GetIsGrounded() == false && animationController.canAttack)
         {
             animationController.AnimateSpecial("Aerial");
             animationController.canAttack = false;
 
+            specialPressed = false;
+        }
+        else
+        {
             specialPressed = false;
         }
 

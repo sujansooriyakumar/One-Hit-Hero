@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviourPun
         {
             collision.gameObject.GetComponent<CharacterAnimation>().Kill();
             if(gc)gc.UpdateScore(owner.GetComponent<Character>().playerID);
-            //owner.GetComponent<CharacterAnimation>().canAttack = false;
+            owner.GetComponent<CharacterAnimation>().canAttack = false;
             owner.GetComponent<CharacterMovement>().canMove= false;
 
         }
@@ -34,6 +34,10 @@ public class Projectile : MonoBehaviourPun
             //owner.GetComponent<CharacterAnimation>().canAttack = false;
             owner.GetComponent<CharacterMovement>().canMove = false;
             other.gameObject.GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector3(0, 0, 0));
+            owner.GetComponent<CharacterAnimation>().canAttack = false;
+            owner.GetComponent<CharacterMovement>().canMove = false;
+            owner.GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector3(0, 0, 0));
+
             Destroy(gameObject);
 
         }

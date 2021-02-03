@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TwistingTracyAnimation : CharacterAnimation
+public class HeftyHarryAnimation : CharacterAnimation
 {
+    public GameObject DPParticles;
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     protected override void Aerial()
     {
         base.Aerial();
@@ -21,7 +27,6 @@ public class TwistingTracyAnimation : CharacterAnimation
 
     protected override void AntiAir()
     {
-        antiAirHitbox = false;
         moveController.canMove = false;
         // Collider2D[] cols = Physics2D.OverlapBoxAll(attackHitboxes[1].bounds.center, attackHitboxes[1].bounds.extents, 1.0f, LayerMask.GetMask("Hitbox"));
         Collider[] cols = Physics.OverlapBox(attackHitboxes[0].bounds.center, attackHitboxes[0].bounds.extents, Quaternion.identity, LayerMask.GetMask("Hitbox"));
@@ -37,13 +42,6 @@ public class TwistingTracyAnimation : CharacterAnimation
                 canAttack = false;
             }
         }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        anim = GetComponentInChildren<Animator>();
-
     }
 
     public override void Kill()
@@ -63,18 +61,16 @@ public class TwistingTracyAnimation : CharacterAnimation
 
     public override void SpawnProjectile()
     {
-        if (projectileInst == null)
-        {
-            projectileInst = Instantiate(projectile, projectileSpawnLoc.transform.position, Quaternion.identity);
-            projectileInst.GetComponent<Projectile>().owner = gameObject;
-            Rigidbody projectileRB = projectileInst.GetComponent<Rigidbody>();
-            if (transform.rotation.eulerAngles.y == 90) projectileRB.velocity = new Vector2(2.0f, 0.0f);
-            else projectileRB.velocity = new Vector2(-2.0f, 0.0f);
-        }
+        base.SpawnProjectile();
     }
 
     protected override void Update()
     {
         base.Update();
+    }
+
+    public void SpawnDP()
+    {
+        Instantiate(DPParticles, attackHitboxes[0].gameObject.transform.position, Quaternion.identity);
     }
 }

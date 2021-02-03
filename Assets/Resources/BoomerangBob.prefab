@@ -272,8 +272,9 @@ GameObject:
   - component: {fileID: 1923388123}
   - component: {fileID: 1923388124}
   - component: {fileID: 1923388125}
+  - component: {fileID: -6973753363469919308}
   m_Layer: 8
-  m_Name: Char1
+  m_Name: BoomerangBob
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,6 +472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a0eff6182cea1468a97f9e8b473ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aerialHitbox: 0
+  antiAirHitbox: 0
   projectile: {fileID: 1091927290051320, guid: e9397a618e38c7048b554bdd3e0f11cd, type: 3}
   projectileSpawnLoc: {fileID: 6277030032059275589}
   attackHitboxes:
@@ -492,6 +495,28 @@ MonoBehaviour:
   rematchReady: 0
   isNetworked: 0
   playerID: 0
+--- !u!114 &-6973753363469919308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277030033479438886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6277030033479438896
 GameObject:
   m_ObjectHideFlags: 0
