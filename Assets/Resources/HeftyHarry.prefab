@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &177273751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 177273752}
+  m_Layer: 0
+  m_Name: ProjectileSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &177273752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177273751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.12, z: 1.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 205884248644747036}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &205884248645100256
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,8 +296,8 @@ GameObject:
   - component: {fileID: 5448733108247469449}
   - component: {fileID: 295886991}
   - component: {fileID: 7583619107692501295}
-  m_Layer: 0
-  m_Name: Heavy
+  m_Layer: 8
+  m_Name: HeftyHarry
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,6 +318,7 @@ Transform:
   - {fileID: 205884248644747038}
   - {fileID: 8202900996340986578}
   - {fileID: 4408899800817353729}
+  - {fileID: 177273752}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -330,7 +361,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205884248645100284}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2.3122218, z: 1}
@@ -349,8 +380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aerialHitbox: 0
   antiAirHitbox: 0
-  projectile: {fileID: 0}
-  projectileSpawnLoc: {fileID: 0}
+  projectile: {fileID: 3124212451011193185, guid: 81cd85a430a0f0d4d8f5fef645ccba62, type: 3}
+  projectileSpawnLoc: {fileID: 177273751}
   attackHitboxes:
   - {fileID: 404261084529820292}
   - {fileID: 6833976855245539988}
@@ -506,7 +537,8 @@ MonoBehaviour:
   observableSearch: 2
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 205884248645100257}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2170,7 +2202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7076614127928064828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.74}
+  m_LocalPosition: {x: 0, y: 0, z: 1.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 205884248644747036}
@@ -2187,5 +2219,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 5.3275547, z: 2.2085946}
-  m_Center: {x: 1.482162e-15, y: 2.1637774, z: 0.60429776}
+  m_Size: {x: 1, y: 5.3275547, z: 2.108697}
+  m_Center: {x: 6.616132e-17, y: 2.1637774, z: 0.25465563}

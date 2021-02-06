@@ -37,7 +37,7 @@ public class HeftyHarryAnimation : CharacterAnimation
             {
 
                 c.gameObject.GetComponent<CharacterAnimation>().Kill();
-
+                antiAirHitbox = false;
                 gc.UpdateScore(GetComponent<Character>().playerID);
                 canAttack = false;
             }
@@ -61,7 +61,14 @@ public class HeftyHarryAnimation : CharacterAnimation
 
     public override void SpawnProjectile()
     {
-        base.SpawnProjectile();
+        if (projectileInst == null)
+        {
+            projectileInst = Instantiate(projectile, projectileSpawnLoc.transform.position, Quaternion.identity);
+            projectileInst.GetComponent<Projectile>().owner = gameObject;
+            Rigidbody projectileRB = projectileInst.GetComponent<Rigidbody>();
+            if (transform.rotation.eulerAngles.y == 90) projectileRB.velocity = new Vector2(10.0f, 0.0f);
+            else projectileRB.velocity = new Vector2(-10.0f, 0.0f);
+        }
     }
 
     protected override void Update()
