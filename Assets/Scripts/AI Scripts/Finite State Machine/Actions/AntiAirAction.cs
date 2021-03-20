@@ -19,6 +19,7 @@ public class AntiAirAction : IAction
     {
         GameObject playerRef = sm.gameObject;
         playerRef.GetComponent<CharacterAnimation>().AnimateSpecial("AntiAir");
+        playerRef.GetComponent<CharacterAnimation>().antiAirHitbox = true;
 
     }
 

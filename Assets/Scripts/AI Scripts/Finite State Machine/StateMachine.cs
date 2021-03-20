@@ -14,7 +14,7 @@ public class StateMachine : MonoBehaviour
     public string stateName;
     IState targetState;
     public IState currentState;
-    public IState initialState, advanceState, retreatState, projectileState, jumpState, antiAirState;
+    public IState initialState, advanceState, retreatState, projectileState, jumpState, antiAirState, aerialState;
     public GameObject playerChar;
     public IAction[] actions;
     public float aggression;
@@ -37,6 +37,7 @@ public class StateMachine : MonoBehaviour
         retreatState = new RetreatState(this);
         projectileState = new ProjectileState(this);
         antiAirState = new AntiAirState(this);
+        aerialState = new AerialState(this);
         jumpState = new JumpState(this);
         aggression = 0.0f;
         jumpChance = 0;
@@ -137,6 +138,8 @@ public class StateMachine : MonoBehaviour
         jumpChance = (float)playerChar.GetComponent<Character>().projectileCount / Random.Range(7,15);
         dpChance = (float)playerChar.GetComponent<Character>().jumpCount / Random.Range(7,15);
         aerialChance = (float)playerChar.GetComponent<Character>().projectileCount / Random.Range(7, 15);
+       
+        
 
     }
 }
