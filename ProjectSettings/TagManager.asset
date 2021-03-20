@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Attack
   - Game Over
+  - Bullet
+  - Wall
   layers:
   - Default
   - TransparentFX

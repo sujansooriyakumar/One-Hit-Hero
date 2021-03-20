@@ -18,6 +18,7 @@ public class NewMenu : MonoBehaviour
         // load character select
         Debug.Log("Loading offline...");
         controller.isNetworked = false;
+        controller.currentMode = GameController.GameMode.OFFLINE;
         SceneManager.LoadScene(1);
     }
 
@@ -31,9 +32,23 @@ public class NewMenu : MonoBehaviour
 
     }
 
+    public void PlayArcade()
+    {
+
+        controller.isNetworked = false;
+        controller.currentMode = GameController.GameMode.ARCADE;
+        SceneManager.LoadScene(1);
+    }
     public void Options()
     {
         Debug.Log("Loading options...");
+    }
+
+    public void Training()
+    {
+        Debug.Log("Loading training...");
+        controller.currentMode = GameController.GameMode.TRAINING;
+        SceneManager.LoadScene(1);
     }
 
     public void Exit()

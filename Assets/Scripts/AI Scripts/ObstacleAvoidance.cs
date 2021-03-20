@@ -15,32 +15,43 @@ public class ObstacleAvoidance : MonoBehaviour
     void Start()
     {
         isJumping = false;
-        lookAhead = 1.0f;
+        lookAhead = 5.0f;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckCollision();
+        Projectile[] projectiles = FindObjectsOfType<Projectile>();
+        foreach(Projectile p in projectiles)
+        {
+            if(p.owner != this.gameObject)
+            {
+                target = p.gameObject;
+            }
+        }
+        if (target != null)
+        {
+            CheckCollision();
+        }
     }
 
     void CheckCollision()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rayOrigin.position, target.transform.position - transform.position, lookAhead);
+        RaycastHit hit;
         // fire ray from player towards facing direction
-        if (hit.collider!= null)
+        int layerMask = 1 <<10;
+        if (Physics.Raycast(GetComponent<CharacterAnimation>().projectileSpawnLoc.transform.position, transform.TransformDirection(Vector3.forward), out hit, lookAhead, layerMask))
         {
-            if (hit.collider.gameObject.tag == "Attack" && !isJumping)
+            if (GetComponent<CharacterMovement>().isGrounded)
             {
-
-                if (rb.velocity.x == 0) anim.SetTrigger("Jump");
-                else { anim.SetTrigger("JumpFwd"); }
-                rb.AddForce(new Vector2(0, 200), ForceMode2D.Force);
-                isJumping = true;
-                
+                GetComponent<CharacterAnimation>().AnimateJump(GetComponent<Rigidbody>().velocity.x);
+                GetComponent<CharacterMovement>().isGrounded = false;
+                GetComponent<Animator>().SetBool("Grounded", false);
             }
+            
         }
         // if hits object of type projectile
         // jump

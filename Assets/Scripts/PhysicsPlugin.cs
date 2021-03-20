@@ -42,7 +42,7 @@ public class PhysicsPlugin : MonoBehaviourPun, IPunObservable
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdatePosition(rbPtr, Time.deltaTime);
         rb = (RigidBody)Marshal.PtrToStructure(rbPtr, typeof(RigidBody));
@@ -55,7 +55,6 @@ public class PhysicsPlugin : MonoBehaviourPun, IPunObservable
         rb.posY = pos_.y;
         rb.posZ = pos_.z;
         rb = (RigidBody)Marshal.PtrToStructure(rbPtr, typeof(RigidBody));
-        transform.position = new Vector3(rb.posX, rb.posY, rb.posZ);
 
 
     }

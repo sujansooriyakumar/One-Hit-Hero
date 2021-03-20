@@ -13,10 +13,12 @@ public class InitialState : IState
     public InitialState(StateMachine sm_)
     {
         sm = sm_;
-        transitions = new ITransition[3];
-        transitions[0] = new ToAdvance(sm_);
-        transitions[1] = new ToRetreat(sm_);
+        transitions = new ITransition[5];
+        transitions[0] = new ToRetreat(sm_);
+        transitions[1] = new ToAdvance(sm_);
         transitions[2] = new ToProjectile(sm_);
+        transitions[3] = new ToJump(sm_);
+        transitions[4] = new ToAntiAir(sm_);
         exitActions = new IAction[1];
         exitActions[0] = new InitialAction(sm);
         entryActions = new IAction[1];

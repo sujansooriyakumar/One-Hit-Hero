@@ -29,10 +29,7 @@ public class TwistingTracyMovement : CharacterMovement
         base.Jump(jumpForce_);
     }
 
-    protected override void OnTriggerEnter(Collider collision)
-    {
-        base.OnTriggerEnter(collision);
-    }
+
 
     public override void SetCanMove()
     {

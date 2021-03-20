@@ -19,10 +19,12 @@ public class RetreatState : IState
         entryActions[0] = new RetreatAction(sm);
         actions = new IAction[1];
         actions[0] = new RetreatAction(sm);
-        transitions = new ITransition[3];
-        transitions[0] = new ToAdvance(sm);
+        transitions = new ITransition[4];
         transitions[1] = new ToInitial(sm);
-        transitions[2] = new ToProjectile(sm_);
+        transitions[0] = new ToProjectile(sm_);
+        transitions[2] = new ToJump(sm_);
+        transitions[3] = new ToAntiAir(sm_);
+
 
 
 

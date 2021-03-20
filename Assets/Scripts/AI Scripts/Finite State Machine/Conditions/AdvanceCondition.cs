@@ -2,23 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AdvanceCondition : MonoBehaviour, ICondition
+public class AdvanceCondition : ICondition
 {
     StateMachine sm;
+    bool result = false;
+    float totalTime = 0;
     public AdvanceCondition(StateMachine sm_)
     {
         sm = sm_;
     }
     public bool Test()
     {
-        bool result = false;
 
+        float test = Random.Range(0.0f, 1.0f);
+        totalTime += Time.deltaTime;
+      
+            if (test < sm.advanceChance)
+            {
+                result = true;
+            }
 
-        if (sm.GetPlayerRef().GetComponent<Character>().GetCurrentState() == Character.PlayerState.RETREATING)
-        {
-            result = true;
-        }
+            else
+            {
+                result = false;
+            }
+            totalTime = 0;
+        
 
         return result;
+    }
+
+    public void CheckResult()
+    {
+        
     }
 }

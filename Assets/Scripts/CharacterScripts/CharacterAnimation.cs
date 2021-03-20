@@ -12,9 +12,9 @@ public class CharacterAnimation : MonoBehaviourPun
     public bool aerialHitbox;
     public bool antiAirHitbox;
     protected Animator anim;
-    protected PhysicsPlugin rb;
+    protected Rigidbody rb;
     protected CharacterMovement moveController;
-    protected GameObject projectileInst;
+    public GameObject projectileInst;
     public GameObject projectile, projectileSpawnLoc;
     public BoxCollider[] attackHitboxes;
     protected GameController gc;
@@ -23,7 +23,7 @@ public class CharacterAnimation : MonoBehaviourPun
     {
         canAttack = true;
         anim = GetComponent<Animator>();
-        rb = GetComponent<PhysicsPlugin>();
+        rb = GetComponent<Rigidbody>();
         moveController = GetComponent<CharacterMovement>();
         gc = GameObject.FindObjectOfType<GameController>();
     }
@@ -42,12 +42,12 @@ public class CharacterAnimation : MonoBehaviourPun
         // if player facing left
         if (transform.rotation.eulerAngles.y == 270)
         {
-            if (rb.GetVelocity().x < 0)
+            if (rb.velocity.x < -0.5f)
             {
                 anim.SetBool("Walk Forward", true);
                 anim.SetBool("Walk Backward", false);
             }
-            else if (rb.GetVelocity().x > 0)
+            else if (rb.velocity.x > 0.5f)
             {
                 anim.SetBool("Walk Forward", false);
                 anim.SetBool("Walk Backward", true);
@@ -63,12 +63,12 @@ public class CharacterAnimation : MonoBehaviourPun
 
         if (transform.rotation.eulerAngles.y == 90)
         {
-            if(rb.GetVelocity().x > 0)
+            if(rb.velocity.x > 0.5f)
             {
                 anim.SetBool("Walk Forward", true);
                 anim.SetBool("Walk Backward", false);
             }
-            else if (rb.GetVelocity().x < 0)
+            else if (rb.velocity.x < -0.5f)
             {
                 anim.SetBool("Walk Forward", false);
                 anim.SetBool("Walk Backward", true);
@@ -92,16 +92,17 @@ public class CharacterAnimation : MonoBehaviourPun
                     moveController.canMove = false;
 
                     anim.SetTrigger("RangeAttack1Trigger");
-                    rb.UpdateVelocity(new Vector3(0, 0, 0));
+                    rb.velocity = Vector3.zero;
                 }
                 break;
             case "AntiAir":
                 if (canAttack)
                 {
                     anim.SetTrigger("UppercutTrigger");
-                    rb.UpdateVelocity(new Vector3(0, 0, 0));
+                    rb.velocity = Vector3.zero;
                     moveController.canMove = false;
                     anim.SetBool("Grounded", false);
+                    GetComponent<Character>().currentState = Character.PlayerState.AIRINVUL;
                 }
                 break;
             case "Aerial":
@@ -124,12 +125,12 @@ public class CharacterAnimation : MonoBehaviourPun
         if(transform.rotation.eulerAngles.y == 90)
         {
             // facing right
-            if(rb.GetVelocity().x > 0)
+            if(rb.velocity.x > 0)
             {
                 anim.SetTrigger("JumpForwardTrigger");
             }
 
-            if (rb.GetVelocity().x < 0)
+            if (rb.velocity.x < 0)
             {
                 anim.SetTrigger("JumpBackwardTrigger");
             }
@@ -138,12 +139,12 @@ public class CharacterAnimation : MonoBehaviourPun
         if (transform.rotation.eulerAngles.y == 270)
         {
             // facing left
-            if (rb.GetVelocity().x < 0)
+            if (rb.velocity.x < 0)
             {
                 anim.SetTrigger("JumpForwardTrigger");
             }
 
-            if (rb.GetVelocity().x > 0)
+            if (rb.velocity.x > 0)
             {
                 anim.SetTrigger("JumpBackwardTrigger");
             }
@@ -165,7 +166,7 @@ public class CharacterAnimation : MonoBehaviourPun
     virtual protected void AntiAir()
     {
         anim.SetBool("Grounded", false);
-        rb.UpdateVelocity(new Vector3(rb.GetVelocity().x, 5.0f, 0));
+        rb.velocity = new Vector3(rb.velocity.x, 5.0f, 0);
         moveController.SetIsGrounded(false);
         moveController.canMove = false;
         // Collider2D[] cols = Physics2D.OverlapBoxAll(attackHitboxes[1].bounds.center, attackHitboxes[1].bounds.extents, 1.0f, LayerMask.GetMask("Hitbox"));
@@ -191,7 +192,7 @@ public class CharacterAnimation : MonoBehaviourPun
         foreach (Collider c in cols)
         {
 
-            if (c.gameObject != gameObject)
+            if (c.gameObject != gameObject && c.GetComponent<Character>().currentState != Character.PlayerState.AIRINVUL)
             {
                aerialHitbox = false;
                c.gameObject.GetComponent<CharacterAnimation>().Kill();

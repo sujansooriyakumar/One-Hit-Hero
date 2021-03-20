@@ -13,7 +13,7 @@ public class Arrive : MonoBehaviour
     {
         maxAccel = 3.0f;
         Character[] players = FindObjectsOfType<Character>();
-        if(players[0] == this)
+        if (players[0].GetComponent<Character>().playerID == GetComponent<Character>().playerID)
         {
             target = players[1];
         }
@@ -27,7 +27,7 @@ public class Arrive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<CharacterMovement>().canMove) GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector3(GetSteering().x, GetComponent<PhysicsPlugin>().GetVelocity().y, 0));
+        if (GetComponent<CharacterMovement>().canMove) GetComponent<Rigidbody>().velocity = (new Vector3(GetSteering().x, GetComponent<Rigidbody>().velocity.y, 0));
 
     }
 

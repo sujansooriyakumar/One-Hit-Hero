@@ -12,26 +12,32 @@ public class Character : MonoBehaviourPun
         ADVANCING,
         RETREATING,
         JUMPING,
+        AIRINVUL,
         DEFAULT
     }
-    PlayerState currentState;
+    public PlayerState currentState;
     public bool isNetworked;
     private CharacterMovement moveController;
     private CharacterAnimation animationController;
-    private PhysicsPlugin rb;
-    private bool specialPressed;
+    private Rigidbody rb;
+    public bool specialPressed;
     public int playerID;
+    public int jumpCount, projectileCount, aerialCount, dpCount;
     GameController gc;
     /*
      * This script reads all input, then delegates tasks to the required scripts
      */
     protected virtual void Awake()
     {
-        rb = GetComponent<PhysicsPlugin>();
+        rb = GetComponent<Rigidbody>();
         moveController = GetComponent<CharacterMovement>();
         animationController = GetComponent<CharacterAnimation>();
         gc = FindObjectOfType<GameController>();
         rematchReady = false;
+        jumpCount = 0;
+        aerialCount = 0;
+        projectileCount = 0;
+        dpCount = 0;
     }
 
     protected virtual void Start()
@@ -47,19 +53,21 @@ public class Character : MonoBehaviourPun
     protected virtual void Update()
     {
         UpdatePlayerState();
-        if (specialPressed && moveController.GetIsGrounded() && moveController.GetVelocity().y == 0 && animationController.canAttack)
+        if (specialPressed && moveController.GetIsGrounded() && moveController.GetVelocity().y == 0 && animationController.canAttack && moveController.GetVelocity().x == 0)
         {
             animationController.AnimateSpecial("Projectile");
             animationController.canAttack = false;
             specialPressed = false;
+            projectileCount++;
         }
 
-        else if (specialPressed && moveController.GetIsGrounded() && animationController.canAttack)
+        else if (specialPressed && moveController.GetIsGrounded() && animationController.canAttack && moveController.GetVelocity().x == 0)
         {
             animationController.AnimateSpecial("AntiAir");
             animationController.canAttack = false;
 
             specialPressed = false;
+            dpCount++;
         }
 
         else if (specialPressed && GetComponent<CharacterMovement>().GetIsGrounded() == false && animationController.canAttack)
@@ -68,6 +76,7 @@ public class Character : MonoBehaviourPun
             animationController.canAttack = false;
 
             specialPressed = false;
+            aerialCount++;
         }
         else
         {
@@ -122,26 +131,24 @@ public class Character : MonoBehaviourPun
 
     protected virtual void UpdatePlayerState()
     {
-        PhysicsPlugin rb = GetComponent<PhysicsPlugin>();
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if((rb.GetVelocity().x > 0 && transform.localScale.x < 0) || (rb.GetVelocity().x < 0 && transform.localScale.x > 0))
+        if((rb.velocity.x > 0 && transform.localScale.x < 0) || (rb.velocity.x < 0 && transform.localScale.x > 0))
         {
             currentState = PlayerState.ADVANCING;
         }
 
-        else if ((rb.GetVelocity().x > 0 && transform.localScale.x > 0) || (rb.GetVelocity().x < 0 && transform.localScale.x < 0))
+        else if ((rb.velocity.x > 0 && transform.localScale.x > 0) || (rb.velocity.x < 0 && transform.localScale.x < 0))
         {
             currentState = PlayerState.RETREATING;
         }
         
 
-        else if(rb.GetVelocity().y > 0)
+        else if(rb.velocity.y > 0)
         {
             currentState = PlayerState.JUMPING;
         }
-        else
+        else if(rb.velocity == Vector3.zero && currentState != PlayerState.AIRINVUL)
         {
-            currentState = PlayerState.DEFAULT;
+           // currentState = PlayerState.DEFAULT;
         }
     }
 

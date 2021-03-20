@@ -41,6 +41,15 @@ public class PlayerSpawner : MonoBehaviourPun
             p2 = Instantiate<GameObject>(Resources.Load<GameObject>(gc.characterSelectionp2), SpawnLocB.position, Quaternion.identity);
             p2.GetComponent<Character>().playerID = 2001;
         }
+
+        if(gc.currentMode == GameController.GameMode.ARCADE)
+        {
+            p2.AddComponent<StateMachine>();
+            p2.GetComponent<StateMachine>().playerChar = p1;
+            p2.GetComponent<CharacterMovement>().isPlayer = false;
+        }
+
+       
     }
 
 

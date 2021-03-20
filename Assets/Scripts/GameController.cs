@@ -13,6 +13,16 @@ public class GameController : MonoBehaviourPun
     public bool paused;
     public int playerOneWins;
     public int playerTwoWins;
+
+    public enum GameMode
+    {
+        ARCADE,
+        OFFLINE,
+        ONLINE,
+        TRAINING
+    }
+
+    public GameMode currentMode;
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -27,6 +37,7 @@ public class GameController : MonoBehaviourPun
     public void SetCharacter(string name_, int playerID)
     {
         if (playerID == 1) characterSelection = name_;
+        if (currentMode == GameMode.ARCADE) characterSelectionp2 = characterSelection;
         else if (playerID == 2) characterSelectionp2 = name_;
         if(isNetworked) SceneManager.LoadScene(2);
 

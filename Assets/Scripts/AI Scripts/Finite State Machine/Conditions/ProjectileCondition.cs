@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileCondition : MonoBehaviour, ICondition
+public class ProjectileCondition : ICondition
 {
     StateMachine sm;
     public ProjectileCondition(StateMachine sm_)
@@ -14,13 +14,11 @@ public class ProjectileCondition : MonoBehaviour, ICondition
         bool result = false;
 
 
-        GameObject npcRef = sm.gameObject;
-        float aggression = sm.aggression;
-        if (aggression >= 15.0f && npcRef.GetComponent<CharacterMovement>().GetIsGrounded())
+        if(Random.Range(0.0f, 1.0f) < sm.projectileChance)
         {
             result = true;
-            sm.aggression = 0;
         }
+       
 
         return result;
     }

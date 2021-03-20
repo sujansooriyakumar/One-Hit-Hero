@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InitialCondition : MonoBehaviour, ICondition
+public class InitialCondition : ICondition
 {
     StateMachine sm;
     public InitialCondition(StateMachine sm_)
@@ -13,10 +13,18 @@ public class InitialCondition : MonoBehaviour, ICondition
     {
         bool result = false;
 
-
-        if (sm.GetPlayerRef().GetComponent<Character>().GetCurrentState() == Character.PlayerState.DEFAULT)
+        if (sm.gameObject.GetComponent<CharacterMovement>().isGrounded)
         {
-            result = true;
+            float test = Random.Range(0.0f, 1.0f);
+            if (test < sm.idleChance)
+            {
+                result = true;
+            }
+
+            else
+            {
+                result = false;
+            }
         }
 
         return result;

@@ -20,7 +20,7 @@ public class CharacterSelect : MonoBehaviour
             SpawnCharacterSlot(c);
 
         }
-        if (!gc.isNetworked)
+        if (gc.currentMode == GameController.GameMode.OFFLINE)
         {
             p1Cursor = Instantiate<CSSCursor>(cursor, transform);
             p1Cursor.playerID = 1;
@@ -28,11 +28,13 @@ public class CharacterSelect : MonoBehaviour
             p2Cursor.playerID = 2;
         }
 
-        else
+        else if(gc.currentMode == GameController.GameMode.ONLINE || gc.currentMode == GameController.GameMode.TRAINING || gc.currentMode == GameController.GameMode.ARCADE)
         {
             p1Cursor = Instantiate<CSSCursor>(cursor, transform);
             p1Cursor.playerID = 1;
         }
+
+        
     }
 
     void SpawnCharacterSlot(CharacterSlot character)

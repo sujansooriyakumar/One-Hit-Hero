@@ -15,10 +15,6 @@ public class TwistingTracy : Character
         base.Awake();
     }
 
-    protected override void CheckDirection()
-    {
-        base.CheckDirection();
-    }
 
     public override void MoveEvent(InputAction.CallbackContext context)
     {

@@ -14,6 +14,7 @@ public class CSSCursor : MonoBehaviour
     GraphicRaycaster gr;
     private PointerEventData pointerEventData = new PointerEventData(null);
     private string currentSelection;
+    bool submit;
 
     private void Start()
     {
@@ -33,8 +34,15 @@ public class CSSCursor : MonoBehaviour
         {
             currentSelection = results[1].gameObject.name;
         }
+        
+       
     }
 
+    private void LateUpdate()
+    {
+      
+
+    }
 
     public void CSSMoveEvent(InputAction.CallbackContext context)
     {
@@ -47,6 +55,16 @@ public class CSSCursor : MonoBehaviour
 
     public void Submit(InputAction.CallbackContext context)
     {
-        gc.SetCharacter(currentSelection, playerID);
+        if (context.performed)
+        {
+            gc.SetCharacter(currentSelection, playerID);
+            if(gc.currentMode == GameController.GameMode.TRAINING)
+            {
+                if (playerID == 1) playerID++;
+                else playerID = 1;
+            }
+            
+            
+        }
     }
 }

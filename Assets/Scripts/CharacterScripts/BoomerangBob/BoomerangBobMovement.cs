@@ -34,15 +34,9 @@ public class BoomerangBobMovement : CharacterMovement
         base.Jump(jumpForce_);
     }
 
-    protected override void OnTriggerEnter(Collider collision)
-    {
-        base.OnTriggerEnter(collision);
-    }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-    }
+
+  
 
     public override void SetCanMove()
     {

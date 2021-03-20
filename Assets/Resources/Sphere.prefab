@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4748727582398491351}
   - component: {fileID: 4343788209245248129}
   - component: {fileID: 3942853603030112815}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RetreatCondition : MonoBehaviour, ICondition
+public class RetreatCondition : ICondition
 {
+    bool result = false;
+    float totalTime = 0;
     StateMachine sm;
     public RetreatCondition(StateMachine sm_)
     {
@@ -11,14 +13,26 @@ public class RetreatCondition : MonoBehaviour, ICondition
     }
     public bool Test()
     {
-        bool result = false;
+       
 
+        float test = Random.Range(0.0f, 1.0f);
+        totalTime += Time.deltaTime;
+        
+            if (test < sm.retreatChance)
+            {
+                result = true;
+            }
 
-        if (sm.GetPlayerRef().GetComponent<Character>().GetCurrentState() == Character.PlayerState.ADVANCING)
-        {
-            result = true;
-        }
-
+            else
+            {
+                result = false;
+            }
+       
         return result;
+    }
+
+    public void CheckResult()
+    {
+        
     }
 }

@@ -91,7 +91,7 @@ public class NetworkedPlay : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.IsOpen = false;
             textDisplay.text = "Match is ready to begin.";
             Debug.Log("match is ready to begin");
-            PhotonNetwork.LoadLevel("SampleScene");
+            PhotonNetwork.LoadLevel("Stage_BasicTraining");
 
         }
     }

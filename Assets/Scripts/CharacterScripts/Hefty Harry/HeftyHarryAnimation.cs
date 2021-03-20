@@ -33,7 +33,7 @@ public class HeftyHarryAnimation : CharacterAnimation
 
         foreach (Collider c in cols)
         {
-            if (c.gameObject != gameObject)
+            if (c.gameObject != gameObject && c.GetComponent<Character>().currentState != Character.PlayerState.AIRINVUL)
             {
 
                 c.gameObject.GetComponent<CharacterAnimation>().Kill();

@@ -1,0 +1,24 @@
+{
+    "Move": {
+        "checkpoints": [
+            {
+                "steps": 5510,
+                "file_path": "results\\ppo\\Move\\Move-5510.onnx",
+                "reward": -1.0,
+                "creation_time": 1614028498.8011904
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5510,
+            "file_path": "results\\ppo\\Move.onnx",
+            "reward": -1.0,
+            "creation_time": 1614028498.8011904
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.0+cu110",
+        "tensorflow_version": -1
+    }
+}
