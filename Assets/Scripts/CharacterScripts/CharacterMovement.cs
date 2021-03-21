@@ -67,6 +67,7 @@ public class CharacterMovement : MonoBehaviourPun
 
 		rb.velocity += (new Vector3(rb.velocity.x, jumpForce_, 0));
 		isGrounded = false;
+        GetComponent<Animator>().SetBool("Grounded", false);
 		canMove = false;
 		GetComponent<Character>().jumpCount += 1;
 

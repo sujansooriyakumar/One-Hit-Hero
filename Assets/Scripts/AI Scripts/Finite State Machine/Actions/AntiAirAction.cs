@@ -6,9 +6,11 @@ public class AntiAirAction : IAction
 {
 
     StateMachine sm;
+    bool executed = false;
     public AntiAirAction(StateMachine sm_)
     {
         sm = sm_;
+        executed = false;
     }
     public bool CanDoBoth(IAction otherAction)
     {
@@ -18,8 +20,12 @@ public class AntiAirAction : IAction
     public void Execute()
     {
         GameObject playerRef = sm.gameObject;
-        playerRef.GetComponent<CharacterAnimation>().AnimateSpecial("AntiAir");
-        playerRef.GetComponent<CharacterAnimation>().antiAirHitbox = true;
+        if (playerRef.GetComponent<CharacterMovement>().isGrounded)
+        {
+            playerRef.GetComponent<CharacterAnimation>().AnimateSpecial("AntiAir");
+            playerRef.GetComponent<CharacterAnimation>().antiAirHitbox = true;
+            
+        }
 
     }
 

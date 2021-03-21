@@ -105,6 +105,8 @@ public class StateMachine : MonoBehaviour
             }
             totalTime = 0.0f;
         }
+        
+       
     }
 
     public GameObject GetPlayerRef()
@@ -138,7 +140,7 @@ public class StateMachine : MonoBehaviour
         jumpChance = (float)playerChar.GetComponent<Character>().projectileCount / Random.Range(7,15);
         dpChance = (float)playerChar.GetComponent<Character>().jumpCount / Random.Range(7,15);
         aerialChance = (float)playerChar.GetComponent<Character>().projectileCount / Random.Range(7, 15);
-       
+        
         
 
     }

@@ -17,7 +17,7 @@ public class JumpCondition : ICondition
     {
         bool result = false;
 
-        if(Random.Range(0.0f, 1.0f) < sm.jumpChance)
+        if(sm.gameObject.GetComponent<CharacterMovement>().isGrounded && Random.Range(0.0f, 1.0f) < sm.jumpChance)
         {
             result = true;
         }

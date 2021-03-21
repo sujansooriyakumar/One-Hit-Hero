@@ -15,16 +15,7 @@ public class InitialCondition : ICondition
 
         if (sm.gameObject.GetComponent<CharacterMovement>().isGrounded)
         {
-            float test = Random.Range(0.0f, 1.0f);
-            if (test < sm.idleChance)
-            {
-                result = true;
-            }
-
-            else
-            {
-                result = false;
-            }
+            result = true;
         }
 
         return result;

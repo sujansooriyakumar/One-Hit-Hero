@@ -20,8 +20,9 @@ public class JumpState : IState
         entryActions[0] = new JumpAction(sm);
         actions = new IAction[1];
         actions[0] = new JumpAction(sm);
-        transitions = new ITransition[1];
+        transitions = new ITransition[2];
         transitions[0] = new ToInitial(sm);
+        transitions[1] = new ToAerial(sm);
 
 
 

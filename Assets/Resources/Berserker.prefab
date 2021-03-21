@@ -1250,7 +1250,7 @@ GameObject:
   - component: {fileID: 1008748935}
   - component: {fileID: 1008748934}
   - component: {fileID: 5187195244823329100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Berserker
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1423,8 +1423,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rematchReady: 0
+  currentState: 0
   isNetworked: 0
+  specialPressed: 0
   playerID: 0
+  jumpCount: 0
+  projectileCount: 0
+  aerialCount: 0
+  dpCount: 0
 --- !u!114 &1008748935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,6 +1445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aerialHitbox: 0
   antiAirHitbox: 0
+  projectileInst: {fileID: 0}
   projectile: {fileID: 3124212451011193185, guid: 81cd85a430a0f0d4d8f5fef645ccba62, type: 3}
   projectileSpawnLoc: {fileID: 170070647}
   attackHitboxes:
@@ -1457,6 +1464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3168119c46f9b8649871a5d3b05be621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
   isGrounded: 0
   canMove: 0
   isPlayer: 1

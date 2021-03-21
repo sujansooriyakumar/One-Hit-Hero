@@ -19,10 +19,9 @@ public class AerialState : IState
         entryActions[0] = new AerialAction(sm);
         actions = new IAction[1];
         actions[0] = new AerialAction(sm);
-        transitions = new ITransition[3];
+        transitions = new ITransition[1];
         transitions[0] = new ToInitial(sm);
-        transitions[1] = new ToAdvance(sm);
-        transitions[2] = new ToRetreat(sm);
+      
      
 
     }

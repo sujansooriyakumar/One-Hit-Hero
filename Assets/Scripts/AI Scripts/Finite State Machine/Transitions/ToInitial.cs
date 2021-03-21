@@ -15,7 +15,7 @@ public class ToInitial : ITransition
         targetState = sm.initialState;
         condition = new InitialCondition(sm);
         actions = new IAction[1];
-        actions[0] = new AdvanceAction(sm);
+        actions[0] = new InitialAction(sm);
     }
     public IState GetTargetState()
     {

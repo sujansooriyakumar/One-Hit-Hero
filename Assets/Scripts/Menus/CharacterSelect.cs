@@ -11,7 +11,7 @@ public class CharacterSelect : MonoBehaviour
     public CSSCursor cursor;
     CSSCursor p1Cursor, p2Cursor;
     public GameController gc;
-
+    public LinkedList<string> names;
     private void Awake()
     {
         gc = FindObjectOfType<GameController>();
@@ -42,7 +42,6 @@ public class CharacterSelect : MonoBehaviour
         GameObject charCell = Instantiate(charCellPrefab, transform);
 
         charCell.name = character.characterName;
-
         Image artwork = charCell.transform.Find("artwork").GetComponent<Image>();
 
         artwork.sprite = character.characterSprite;

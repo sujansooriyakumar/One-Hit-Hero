@@ -116,8 +116,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8853383, z: 0.73116636}
-  m_Center: {x: 3.949719e-16, y: 3.72243, z: 0.27779362}
+  m_Size: {x: 1, y: 1.8226418, z: 1.107348}
+  m_Center: {x: 3.865742e-16, y: 2.123659, z: 0.089702725}
 --- !u!1 &6277030033479438884
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c37ab41fdd17a4791225a274111253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
   isGrounded: 0
   canMove: 0
   isPlayer: 1
@@ -461,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aerialHitbox: 0
   antiAirHitbox: 0
+  projectileInst: {fileID: 0}
   projectile: {fileID: 1091927290051320, guid: e9397a618e38c7048b554bdd3e0f11cd, type: 3}
   projectileSpawnLoc: {fileID: 6277030032059275589}
   attackHitboxes:
@@ -480,8 +482,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rematchReady: 0
+  currentState: 0
   isNetworked: 0
+  specialPressed: 0
   playerID: 0
+  jumpCount: 0
+  projectileCount: 0
+  aerialCount: 0
+  dpCount: 0
 --- !u!54 &-7375870169199918221
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -20,16 +20,10 @@ public class JumpAction : IAction
     public void Execute()
     {
         GameObject npcRef = sm.gameObject;
-        //npcRef.GetComponent<CharacterMovement>().SetVelocity(new Vector3(npcRef.GetComponent<Rigidbody>().velocity.x, 1.0f));
 
-        //npcRef.GetComponent<CharacterAnimation>().GetAnimator().SetBool("Grounded", false);
-        //npcRef.GetComponent<CharacterMovement>().isGrounded = false;
-        if (sm.GetComponent<ObstacleAvoidance>() == null)
-        {
-            npcRef.AddComponent<ObstacleAvoidance>();
-        }
-
-        npcRef.GetComponent<ObstacleAvoidance>().enabled = true;
+        npcRef.GetComponent<CharacterAnimation>().AnimateJump(npcRef.GetComponent<Rigidbody>().velocity.x);
+        
+        
 
     }
 

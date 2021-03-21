@@ -20,10 +20,9 @@ public class AntiAirState : IState
         entryActions[0] = new AntiAirAction(sm);
         actions = new IAction[1];
         actions[0] = new AntiAirAction(sm);
-        transitions = new ITransition[3];
+        transitions = new ITransition[1];
         transitions[0] = new ToInitial(sm);
-        transitions[1] = new ToAdvance(sm);
-        transitions[2] = new ToRetreat(sm);
+       
 
     }
     public IAction[] GetActions()

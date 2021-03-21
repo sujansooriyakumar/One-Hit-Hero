@@ -101,6 +101,7 @@ public class CharacterAnimation : MonoBehaviourPun
                     anim.SetTrigger("UppercutTrigger");
                     rb.velocity = Vector3.zero;
                     moveController.canMove = false;
+                    moveController.isGrounded = false;
                     anim.SetBool("Grounded", false);
                     GetComponent<Character>().currentState = Character.PlayerState.AIRINVUL;
                 }
