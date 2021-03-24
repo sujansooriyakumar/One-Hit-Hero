@@ -1,11 +1,10 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class BaseCharacter : MonoBehaviourPun
+public class BaseCharacter : MonoBehaviour
 {
     private enum GAMESTATES
     {
@@ -42,22 +41,7 @@ public class BaseCharacter : MonoBehaviourPun
     void Update()
     {
         
-        if (photonView.IsMine)
-        {
-            // walking animation
-
-            if (rb.velocity.x != 0)
-            {
-                currentState = GAMESTATES.WALK;
-                anim.SetBool("walkFwd", true);
-            }
-
-            if (rb.velocity.x == 0)
-            {
-                anim.SetBool("walkFwd", false);
-                anim.SetBool("walkBack", false);
-            }
-        }
+        
         // attack animations
 
     }
@@ -65,8 +49,7 @@ public class BaseCharacter : MonoBehaviourPun
     // fixed update for physics only
     private void FixedUpdate()
     {
-        if (photonView.IsMine)
-        {
+        
             if (specialPressed && !isJumping && !projectileInst && velocity.y == 0 && currentState == GAMESTATES.IDLE)
             {
                 currentState = GAMESTATES.FIREBALL;
@@ -93,7 +76,6 @@ public class BaseCharacter : MonoBehaviourPun
 
             }
             //CheckDirection();
-            if(PhotonNetwork.IsConnected) photonView.RPC("CheckDirection", RpcTarget.All);
 
             // walk
             if (!isJumping && canWalk) rb.velocity = new Vector2(velocity.x * walkSpeed, rb.velocity.y);
@@ -107,7 +89,7 @@ public class BaseCharacter : MonoBehaviourPun
                 rb.AddForce(new Vector2(0, 400), ForceMode2D.Force);
                 isJumping = true;
             }
-        }
+        
 
     }
 
@@ -129,7 +111,6 @@ public class BaseCharacter : MonoBehaviourPun
 
     void Fireball()
     {
-        photonView.RPC("FireProjectile", RpcTarget.AllViaServer);
     }
 
     void Aerial()
@@ -170,7 +151,6 @@ public class BaseCharacter : MonoBehaviourPun
         currentState = GAMESTATES.IDLE;
     }
 
-    [PunRPC]
     void CheckDirection()
     {
         BaseCharacter p2 = null;
@@ -243,7 +223,6 @@ public class BaseCharacter : MonoBehaviourPun
             canWalk = false;
 
     }
-    [PunRPC]
     void FireProjectile()
     {
         if (projectileInst == null)

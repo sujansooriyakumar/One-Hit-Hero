@@ -21,7 +21,10 @@ public class AerialAction : MonoBehaviour, IAction
     {
 
         GameObject playerRef = sm.gameObject;
-        playerRef.GetComponent<CharacterAnimation>().AnimateSpecial("Aerial");
+        if (playerRef.GetComponent<CharacterMovement>().GetIsGrounded() == false && playerRef.GetComponent<CharacterAnimation>().canAttack)
+        {
+            playerRef.GetComponent<CharacterAnimation>().AnimateSpecial("Aerial");
+        }
         
     }
 

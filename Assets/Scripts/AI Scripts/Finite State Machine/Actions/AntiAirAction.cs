@@ -20,7 +20,7 @@ public class AntiAirAction : IAction
     public void Execute()
     {
         GameObject playerRef = sm.gameObject;
-        if (playerRef.GetComponent<CharacterMovement>().isGrounded)
+        if (playerRef.GetComponent<CharacterMovement>().isGrounded && playerRef.GetComponent<CharacterAnimation>().canAttack)
         {
             playerRef.GetComponent<CharacterAnimation>().AnimateSpecial("AntiAir");
             playerRef.GetComponent<CharacterAnimation>().antiAirHitbox = true;

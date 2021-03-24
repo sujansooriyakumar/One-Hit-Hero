@@ -1,5 +1,4 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ using UnityEngine;
  * Controls the animation for the character
  * as well as attacks. 
  */
-public class CharacterAnimation : MonoBehaviourPun
+public class CharacterAnimation : MonoBehaviour
 {
     public bool aerialHitbox;
     public bool antiAirHitbox;
@@ -207,6 +206,13 @@ public class CharacterAnimation : MonoBehaviourPun
     virtual public void Kill()
     {
         anim.SetTrigger("DeathTrigger");
+        Character[] chars = FindObjectsOfType<Character>();
+        foreach(Character c in chars)
+        {
+            c.GetComponent<CharacterMovement>().canMove = false;
+            c.GetComponent<CharacterAnimation>().canAttack = false;
+            c.GetComponent<Character>().currentState = Character.PlayerState.DEAD;
+        }
 
     }
   

@@ -1,87 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon;
-using Photon.Pun;
 
-public class CameraControl : MonoBehaviourPun
+
+public class CameraControl : MonoBehaviour
 {
     // get reference to both players
     // get distance between both players
-    // the lower the distance, the more zoomed in the camera is
     // set a max distance between both players to enable panning
     // if the players are moving to the left, pan left
     // if the players are moving to the right, pan right
-    // clamp edges of cam
-    public Character[] playersRef;
-    Character leftPlayer, rightPlayer;
-    float distance;
-    float maxDistance = 6.0f;
-    float minX;
-    float maxX;
-    private void Awake()
+    // clamp edges of cam at -7 and 4
+    GameObject leftPlayer, rightPlayer;
+    float maxDist = 9.1f;
+    float margin = 1.5f;
+    public Transform _transform;
+    Vector3 camPos;
+    float xL, xR;
+    float wScene;
+    float z0 = 0;
+    float zCam;
+
+    private void Start()
     {
-        distance = 0;
-        minX = -1.5f;
-        maxX = 3.85f;
+        camPos = _transform.position;
+        FindPlayers();
+        calcScreen();
+        wScene = xR - xL;
+
+        zCam = transform.position.z - z0;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if(FindObjectOfType<GameController>().isNetworked) photonView.RPC("GetPlayerRefs", RpcTarget.All);
-        if (playersRef.Length >= 2)
+        Vector3 newPos = transform.position;
+        FindPlayers();
+        calcScreen();
+        float width = xR - xL;
+        if (Vector3.Distance(leftPlayer.transform.position, rightPlayer.transform.position) < maxDist)
         {
-            float distance = Vector3.Distance(playersRef[0].transform.position, playersRef[1].transform.position);
-            if(playersRef[0].transform.position.x < playersRef[1].transform.position.x)
+            //transform.position = new Vector3(transform.position.x, transform.position.y, (zCam * width) / (wScene + z0));
+            if ((leftPlayer.GetComponent<Rigidbody>().velocity.x < -0.5f && rightPlayer.GetComponent<Rigidbody>().velocity.x < -0.5f))
             {
-                leftPlayer = playersRef[0];
-                rightPlayer = playersRef[1];
+                newPos = new Vector3(Mathf.Clamp((xR + xL) / 2, -7.0f, 4.2f), transform.position.y, transform.position.z);
+
             }
 
-            else
+            if ((leftPlayer.GetComponent<Rigidbody>().velocity.x > 0.5f && rightPlayer.GetComponent<Rigidbody>().velocity.x > 0.5f))
             {
-                leftPlayer = playersRef[1];
-                rightPlayer = playersRef[0];
-            }
-
-            if (distance < maxDistance)
-            {
-                if (leftPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x > 0)
-                {
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(maxX, 0, transform.position.z), Time.deltaTime);
-                }
-                if (leftPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x < 0)
-                {
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(minX, 0, transform.position.z), Time.deltaTime);
-                }
-                if (rightPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x < 0)
-
-                {
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(minX, 0, transform.position.z), Time.deltaTime);
-                }
-
-                if (rightPlayer.GetComponent<PhysicsPlugin>().GetVelocity().x > 0)
-
-                {
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(maxX, 0, transform.position.z), Time.deltaTime);
-                }
+                newPos = new Vector3(Mathf.Clamp((xR + xL) / 2, -7.0f, 4.2f), transform.position.y, transform.position.z);
             }
         }
-
-        // check if distance is less than maxdistance
-        // if the player is moving to the left, pan left
-        // if the player is moving to the right, pan right
-
-       
-
-
-
+        transform.position = Vector3.Lerp(transform.position, newPos, 1.0f * Time.deltaTime);
     }
 
-    [PunRPC]
-    void GetPlayerRefs()
+    private void calcScreen()
     {
-        playersRef = FindObjectsOfType<Character>();
+        xL = leftPlayer.transform.position.x - margin;
+        xR = rightPlayer.transform.position.x + margin;
+    }
+
+    private void FindPlayers()
+    {
+        // function to determine which player is on right and which player is on left
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Vector3 p1Loc = players[0].transform.position;
+        Vector3 p2Loc = players[1].transform.position;
+        if (p1Loc.x > p2Loc.x)
+        {
+            leftPlayer = players[1];
+            rightPlayer = players[0];
+        }
+        else if(p1Loc.x < p2Loc.x)
+        {
+            leftPlayer = players[0];
+            rightPlayer = players[1];
+        }
     }
 
 }

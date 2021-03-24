@@ -1,9 +1,9 @@
-﻿using Photon.Pun;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviourPun
+public class Projectile : MonoBehaviour
 {
     public GameObject owner;
     protected GameController gc;
@@ -72,7 +72,6 @@ public class Projectile : MonoBehaviourPun
     }
 
 
-    [PunRPC]
 
     void RemoveObject()
     {

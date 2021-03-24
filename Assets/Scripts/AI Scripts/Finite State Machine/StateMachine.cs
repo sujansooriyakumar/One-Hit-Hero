@@ -57,7 +57,7 @@ public class StateMachine : MonoBehaviour
         
         stateName = currentState.ToString();
         totalTime += Time.deltaTime;
-        if (totalTime >= 0.3f)
+        if (totalTime >= 0.5f)
         {
             // check and apply transitions, return a list of actions
             ITransition triggered = null;
@@ -118,23 +118,23 @@ public class StateMachine : MonoBehaviour
     {
         if(playerChar.GetComponent<Character>().currentState == Character.PlayerState.ADVANCING)
         {
-            advanceChance = 0.65f;
-            retreatChance = 0.15f;
-            idleChance = 0.05f;
+            advanceChance = Random.Range(0.4f, 1.0f);
+            retreatChance = Random.Range(0.2f, 0.6f);
+            idleChance = Random.Range(0.1f, 0.3f);
             projectileChance = 0.3f;
         }
         if (playerChar.GetComponent<Character>().currentState == Character.PlayerState.RETREATING)
         {
-            retreatChance = 0.65f;
-            advanceChance = 0.15f;
-            idleChance = 0.05f;
+            retreatChance = Random.Range(0.4f, 1.0f);
+            advanceChance = Random.Range(0.2f, 0.6f);
+            idleChance = Random.Range(0.1f, 0.3f);
             projectileChance = 0.3f;
         }
         if (playerChar.GetComponent<Character>().currentState == Character.PlayerState.DEFAULT)
         {
-            idleChance = 0.8f;
-            retreatChance = 0.05f;
-            advanceChance = 0.05f;
+            idleChance = Random.Range(0.4f, 1.0f);
+            advanceChance = Random.Range(0.2f, 0.6f);
+            retreatChance = Random.Range(0.1f, 0.3f);
             projectileChance = 0.3f;
         }
         jumpChance = (float)playerChar.GetComponent<Character>().projectileCount / Random.Range(7,15);

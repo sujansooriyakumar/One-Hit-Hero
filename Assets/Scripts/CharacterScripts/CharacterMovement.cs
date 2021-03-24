@@ -1,4 +1,4 @@
-﻿using Photon.Pun;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
  * Controls all character movement
  * including jumping and horizontal movement.
  */
-public class CharacterMovement : MonoBehaviourPun
+public class CharacterMovement : MonoBehaviour
 {
 	Rigidbody rb;
 	Character character;
@@ -92,9 +92,13 @@ public class CharacterMovement : MonoBehaviourPun
 
 	virtual public void SetCanMove()
 	{
-		canMove = true;
-		animationController.canAttack = true;
-        GetComponent<Character>().currentState = Character.PlayerState.DEFAULT;
+        Character[] chars = FindObjectsOfType<Character>();
+        if (chars[0].currentState != Character.PlayerState.DEAD && chars[1].currentState != Character.PlayerState.DEAD)
+        {
+            canMove = true;
+            animationController.canAttack = true;
+            GetComponent<Character>().currentState = Character.PlayerState.DEFAULT;
+        }
 	}
 
 

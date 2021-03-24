@@ -16,7 +16,6 @@ public class NewMenu : MonoBehaviour
     {
         // set is networked to false
         // load character select
-        Debug.Log("Loading offline...");
         controller.isNetworked = false;
         controller.currentMode = GameController.GameMode.OFFLINE;
         SceneManager.LoadScene(1);

@@ -311,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 205884248645100284}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 205884248644747116}
   - {fileID: 205884248644747038}
@@ -354,6 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aerialHitbox: 0
   antiAirHitbox: 0
+  projectileInst: {fileID: 0}
   projectile: {fileID: 3124212451011193185, guid: 81cd85a430a0f0d4d8f5fef645ccba62, type: 3}
   projectileSpawnLoc: {fileID: 177273751}
   attackHitboxes:
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897523ca05e5263459a528adb7543135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
   isGrounded: 0
   canMove: 0
   isPlayer: 1
@@ -389,8 +391,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rematchReady: 0
+  currentState: 0
   isNetworked: 0
+  specialPressed: 0
   playerID: 0
+  jumpCount: 0
+  projectileCount: 0
+  aerialCount: 0
+  dpCount: 0
 --- !u!114 &295886991
 MonoBehaviour:
   m_ObjectHideFlags: 0

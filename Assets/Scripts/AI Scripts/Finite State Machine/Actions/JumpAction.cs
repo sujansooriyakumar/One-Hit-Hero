@@ -22,8 +22,9 @@ public class JumpAction : IAction
         GameObject npcRef = sm.gameObject;
 
         npcRef.GetComponent<CharacterAnimation>().AnimateJump(npcRef.GetComponent<Rigidbody>().velocity.x);
-        
-        
+        npcRef.GetComponent<CharacterAnimation>().GetAnimator().SetBool("Grounded", false);
+        npcRef.GetComponent<CharacterMovement>().canMove = false;
+
 
     }
 

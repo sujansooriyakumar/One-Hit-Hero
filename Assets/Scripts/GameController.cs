@@ -1,10 +1,9 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviourPun
+public class GameController : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isNetworked;
@@ -107,7 +106,6 @@ public class GameController : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
     public void ResetPositions()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -129,11 +127,9 @@ public class GameController : MonoBehaviourPun
 
     public void MainMenu()
     {
-        PhotonNetwork.Disconnect();
-        PhotonNetwork.LoadLevel("NewMainMenu");
+
     }
 
-    [PunRPC]
     public void Rematch()
     {
         ResetPositions();

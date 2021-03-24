@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Photon;
-using Photon.Pun;
 
-public class Timer : MonoBehaviourPunCallbacks
+public class Timer : MonoBehaviour
 {
     float totalTime;
     Text text;
@@ -31,19 +29,9 @@ public class Timer : MonoBehaviourPunCallbacks
 
         if(time == 0)
         {
-            BaseCharacter[] players = GameObject.FindObjectsOfType<BaseCharacter>();
-            foreach (BaseCharacter c in players)
-            {
-                //c.DisconnectFromServer();
-            }
-            
-            time = 99;
+          
         }
     }
 
-    public void Disconnect()
-    {
-        PhotonNetwork.LeaveRoom(true);
 
-    }
 }

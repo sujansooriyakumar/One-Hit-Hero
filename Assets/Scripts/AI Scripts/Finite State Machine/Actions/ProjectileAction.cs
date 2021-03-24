@@ -26,7 +26,7 @@ public class ProjectileAction : IAction
     {
         GameObject playerRef = sm.gameObject;
         //playerRef.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        if (playerRef.GetComponent<CharacterAnimation>().projectileInst == null)
+        if (playerRef.GetComponent<CharacterAnimation>().projectileInst == null && playerRef.GetComponent<CharacterAnimation>().canAttack)
         {
             playerRef.GetComponent<CharacterAnimation>().AnimateSpecial("Projectile");
             playerRef.GetComponent<CharacterAnimation>().canAttack = false;

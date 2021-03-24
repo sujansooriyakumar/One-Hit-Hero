@@ -1,10 +1,9 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Character : MonoBehaviourPun
+public class Character : MonoBehaviour
 {
     public bool rematchReady;
     public enum PlayerState
@@ -13,6 +12,7 @@ public class Character : MonoBehaviourPun
         RETREATING,
         JUMPING,
         AIRINVUL,
+        DEAD,
         DEFAULT
     }
     public PlayerState currentState;
@@ -42,10 +42,7 @@ public class Character : MonoBehaviourPun
 
     protected virtual void Start()
     {
-        if (gc.isNetworked)
-        {
-            playerID = photonView.ViewID;
-        }
+       
         isNetworked = gc.isNetworked;
         currentState = PlayerState.DEFAULT;
     }
@@ -78,16 +75,13 @@ public class Character : MonoBehaviourPun
             specialPressed = false;
             aerialCount++;
         }
-        else
-        {
+      
             specialPressed = false;
-        }
+       
 
-        if (PhotonNetwork.IsConnected) photonView.RPC("CheckDirection", RpcTarget.All);
-        else
-        {
+       
             CheckDirection();
-        }
+        
     }
     public virtual void SpecialEvent(InputAction.CallbackContext context)
     {
@@ -100,7 +94,6 @@ public class Character : MonoBehaviourPun
       
     }
 
-    [PunRPC]
     protected virtual void CheckDirection()
     {
         Character p2 = null;
@@ -157,7 +150,6 @@ public class Character : MonoBehaviourPun
         return currentState;
     }
 
-    [PunRPC]
     protected virtual void AwaitRematch()
     {
         rematchReady = true;

@@ -16,7 +16,37 @@ public class TwistingTracyAnimation : CharacterAnimation
 
     public override void AnimateSpecial(string specialName_)
     {
-        base.AnimateSpecial(specialName_);
+        switch (specialName_)
+        {
+            case "Projectile":
+                if (projectileInst == null && canAttack)
+                {
+                    moveController.canMove = false;
+
+                    anim.SetTrigger("RangeAttack1Trigger");
+                    rb.velocity = Vector3.zero;
+                }
+                break;
+            case "AntiAir":
+                if (canAttack)
+                {
+                    anim.SetTrigger("UppercutTrigger");
+                    rb.velocity = Vector3.zero;
+                 
+                    GetComponent<Character>().currentState = Character.PlayerState.AIRINVUL;
+                }
+                break;
+            case "Aerial":
+                if (canAttack)
+                {
+                    anim.SetTrigger("HighKickTrigger");
+                    moveController.canMove = false;
+                }
+                break;
+            default:
+                Debug.Log("default");
+                break;
+        }
     }
 
     protected override void AntiAir()

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Runtime.InteropServices;
-using Photon.Pun;
 
-public class PhysicsPlugin : MonoBehaviourPun, IPunObservable
+
+public class PhysicsPlugin : MonoBehaviour
 {
     const string dllName = "PhysicsPlugin";
     [DllImport(dllName)]
@@ -81,24 +81,7 @@ public class PhysicsPlugin : MonoBehaviourPun, IPunObservable
 
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(rb.velX);
-            stream.SendNext(rb.velY);
-            stream.SendNext(rb.velZ);
-        }
-        else
-        {
-            float x = (float)stream.ReceiveNext();
-            float y = (float)stream.ReceiveNext();
-            float z = (float)stream.ReceiveNext();
-            SetVelocity(rbPtr, x, y, z);
-            rb = (RigidBody)Marshal.PtrToStructure(rbPtr, typeof(RigidBody));
-        }
-
-    }
+   
 
 
 }

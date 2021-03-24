@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b5d5c7c1ed1681541a981047546e0a44
 ModelImporter:
-  serializedVersion: 20101
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
@@ -106,6 +106,9 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips:
   - 8ba71663be6250542ba8b4f62affec31
+  - d2e9e6d584e21974e95acc5147a29775
+  - a6831962867d55e438e4603d18eaa792
+  - 951642c609c6c57428710b763178a23a
   - df95cb056d1fc1b41872b9c56af1bbc3
   - 3b646566fe9b969418dec5e7f571f83e
   importAnimation: 1
@@ -896,6 +899,7 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
