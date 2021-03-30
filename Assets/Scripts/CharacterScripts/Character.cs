@@ -90,7 +90,11 @@ public class Character : MonoBehaviour
 
     public virtual void MoveEvent(InputAction.CallbackContext context)
     {
-        moveController.SetVelocity(context.ReadValue<Vector2>());
+        if(moveController.canMove) moveController.SetVelocity(context.ReadValue<Vector2>());
+        else
+        {
+            moveController.SetVelocity(Vector3.zero);
+        }
       
     }
 

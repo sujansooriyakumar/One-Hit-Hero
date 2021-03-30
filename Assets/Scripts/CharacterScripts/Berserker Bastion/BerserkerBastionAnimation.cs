@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BerserkerBastionAnimation : CharacterAnimation
 {
+    public GameObject DPEffect;
+    public GameObject AerialProj;
+    public Transform AerialProjSpawn;
+    GameObject AerialProjInst;
+
     protected override void Aerial()
     {
         //Collider2D[] cols = Physics2D.OverlapBoxAll(attackHitboxes[0].bounds.center, attackHitboxes[0].bounds.extents, 1.0f, LayerMask.GetMask("Hitbox"));
@@ -107,11 +112,34 @@ public class BerserkerBastionAnimation : CharacterAnimation
 
     public override void SpawnProjectile()
     {
-        base.SpawnProjectile();
+        if (projectileInst == null)
+        {
+            projectileInst = Instantiate(projectile, projectileSpawnLoc.transform.position, Quaternion.identity);
+            projectileInst.GetComponent<Projectile>().owner = gameObject;
+           
+        }
     }
 
     protected override void Update()
     {
         base.Update();
+    }
+
+    public void AntiAirEffect()
+    {
+        Instantiate(DPEffect, transform.position, Quaternion.identity);
+    }
+
+    public void SpawnAerial()
+    {
+        if (AerialProjInst == null)
+        {
+            AerialProjInst = Instantiate(AerialProj, AerialProjSpawn.position, Quaternion.identity);
+            AerialProjInst.GetComponent<Projectile>().owner = gameObject;
+            Rigidbody aerialRB = AerialProjInst.GetComponent<Rigidbody>();
+            if (transform.rotation.eulerAngles.y == 90) aerialRB.velocity = new Vector2(5.0f, 0.0f);
+            else aerialRB.velocity = new Vector2(-5.0f, 0.0f);
+        }
+        
     }
 }

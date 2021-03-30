@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: a47b5e80d450bff409d510e391353c4e
 ModelImporter:
-  serializedVersion: 20101
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -436,6 +436,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.38749996
         functionName: SetAerialHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4390118
+        functionName: SpawnAerial
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -1302,6 +1309,7 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

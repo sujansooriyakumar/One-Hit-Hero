@@ -27,13 +27,12 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && other.gameObject != owner)
         {
             other.gameObject.GetComponent<CharacterAnimation>().Kill();
             if (gc) gc.UpdateScore(owner.GetComponent<Character>().playerID);
             //owner.GetComponent<CharacterAnimation>().canAttack = false;
             owner.GetComponent<CharacterMovement>().canMove = false;
-            other.gameObject.GetComponent<PhysicsPlugin>().UpdateVelocity(new Vector3(0, 0, 0));
             owner.GetComponent<CharacterAnimation>().canAttack = false;
             owner.GetComponent<CharacterMovement>().canMove = false;
             owner.GetComponent<Rigidbody>().velocity = (new Vector3(0, 0, 0));
@@ -54,7 +53,7 @@ public class Projectile : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && collision.gameObject != owner)
         {
             collision.gameObject.GetComponent<CharacterAnimation>().Kill();
             if (gc) gc.UpdateScore(owner.GetComponent<Character>().playerID);
@@ -64,10 +63,10 @@ public class Projectile : MonoBehaviour
             owner.GetComponent<CharacterAnimation>().canAttack = false;
             owner.GetComponent<CharacterMovement>().canMove = false;
             owner.GetComponent<Rigidbody>().velocity = (new Vector3(0, 0, 0));
+            Destroy(gameObject);
 
 
         }
-        Destroy(gameObject);
 
     }
 

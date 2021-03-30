@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 821dd59ad23dac343b27799e8583b6ea
 ModelImporter:
-  serializedVersion: 20101
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -434,6 +434,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.9125
         functionName: SetAntiAirHitbox
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5936508
+        functionName: AntiAirEffect
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -1300,6 +1307,7 @@ ModelImporter:
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
