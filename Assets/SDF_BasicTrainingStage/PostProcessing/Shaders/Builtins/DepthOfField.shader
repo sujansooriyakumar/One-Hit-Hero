@@ -24,7 +24,7 @@ Shader "Hidden/PostProcessing/DepthOfField"
             Name "CoC Temporal Filter"
 
             HLSLPROGRAM
-                #pragma target 5.0
+#pragma target 3.5
                 #pragma vertex VertDefault
                 #pragma fragment FragTempFilter
                 #include "DepthOfField.hlsl"
@@ -36,7 +36,7 @@ Shader "Hidden/PostProcessing/DepthOfField"
             Name "Downsample and Prefilter"
 
             HLSLPROGRAM
-                #pragma target 5.0
+#pragma target 3.5
                 #pragma vertex VertDefault
                 #pragma fragment FragPrefilter
                 #include "DepthOfField.hlsl"

@@ -175,7 +175,7 @@ Shader "Hidden/NoiseAndGrainDX11" {
 		CGPROGRAM
 		
 		#pragma exclude_renderers gles xbox360 ps3 d3d9
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert
 		#pragma fragment fragDX11
 		
@@ -188,7 +188,7 @@ Shader "Hidden/NoiseAndGrainDX11" {
 		CGPROGRAM
 		
 		#pragma exclude_renderers gles xbox360 ps3 d3d9
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert
 		#pragma fragment fragDX11Monochrome
 
@@ -201,7 +201,7 @@ Shader "Hidden/NoiseAndGrainDX11" {
 		CGPROGRAM
 		
 		#pragma exclude_renderers gles xbox360 ps3 d3d9
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert
 		#pragma fragment fragDX11Tmp
 	
@@ -214,7 +214,7 @@ Shader "Hidden/NoiseAndGrainDX11" {
 		CGPROGRAM
 		
 		#pragma exclude_renderers gles xbox360 ps3 d3d9
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert
 		#pragma fragment fragDX11MonochromeTmp
 		
@@ -227,7 +227,7 @@ Shader "Hidden/NoiseAndGrainDX11" {
 		CGPROGRAM
 		
 		#pragma exclude_renderers gles xbox360 ps3 d3d9
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert
 		#pragma fragment fragOverlayBlend
 		

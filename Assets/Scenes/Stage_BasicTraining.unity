@@ -343,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549748738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.59, y: -0.33, z: -15.94}
+  m_LocalPosition: {x: 0, y: 1.2, z: -11.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2003349279}
@@ -383,7 +383,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 20
-  field of view: 62.5
+  field of view: 76.9
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -688,16 +688,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 968826752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &968826754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,15 +1001,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fe90a525eff9dbc439505c489f68d933, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fe90a525eff9dbc439505c489f68d933, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fe90a525eff9dbc439505c489f68d933, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fe90a525eff9dbc439505c489f68d933, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1123,7 +1131,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1000, y: 1, z: 19.596317}
+  m_Size: {x: 1000, y: 1.13, z: 36.8}
   m_Center: {x: 0.7351637, y: -0.54999995, z: -4.0598817}
 --- !u!1001 &1777236414
 PrefabInstance:
@@ -1134,23 +1142,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6920009727923522795, guid: e80d304aa2e997347a8da5f06c0bca0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -5.46
       objectReference: {fileID: 0}
     - target: {fileID: 6920009727923522795, guid: e80d304aa2e997347a8da5f06c0bca0d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.29
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6920009727923522795, guid: e80d304aa2e997347a8da5f06c0bca0d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4.94
       objectReference: {fileID: 0}
     - target: {fileID: 6920009728559139623, guid: e80d304aa2e997347a8da5f06c0bca0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 8.11
       objectReference: {fileID: 0}
     - target: {fileID: 6920009728559139623, guid: e80d304aa2e997347a8da5f06c0bca0d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.25
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920009728559139623, guid: e80d304aa2e997347a8da5f06c0bca0d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 6920009729389770469, guid: e80d304aa2e997347a8da5f06c0bca0d, type: 3}
       propertyPath: m_RootOrder
@@ -1397,8 +1409,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5664697, y: 10.369173, z: 1}
-  m_Center: {x: 5.817483, y: 4.6845865, z: 0}
+  m_Size: {x: 4.7, y: 57.61, z: 92.7}
+  m_Center: {x: 9.48, y: 4.6845865, z: 0}
 --- !u!65 &2003349281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1410,8 +1422,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.5025244, y: 10.534705, z: 1}
-  m_Center: {x: -6.6344028, y: 4.7673526, z: -0}
+  m_Size: {x: 3.5025244, y: 71, z: 92}
+  m_Center: {x: -10.1, y: 4.7673526, z: -0}
 --- !u!54 &2003349283
 Rigidbody:
   m_ObjectHideFlags: 0

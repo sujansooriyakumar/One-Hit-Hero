@@ -3,7 +3,7 @@ Shader "Hidden/PostProcessing/Debug/LightMeter"
     HLSLINCLUDE
 
         #pragma exclude_renderers gles gles3 d3d11_9x
-        #pragma target 4.5
+#pragma target 3.5
         #include "../StdLib.hlsl"
         #include "../Builtins/ExposureHistogram.hlsl"
         #pragma multi_compile __ COLOR_GRADING_HDR

@@ -143,7 +143,7 @@ Pass
 
 	#pragma vertex vert
 	#pragma fragment frag
-	#pragma target 5.0
+#pragma target 3.5
 
 	#include "UnityCG.cginc"
 
@@ -210,7 +210,7 @@ Pass {
 
 	CGPROGRAM
 
-	#pragma target 5.0
+#pragma target 3.5
 	#pragma vertex vertApply
 	#pragma geometry geom
 	#pragma fragment frag
@@ -237,7 +237,7 @@ Pass {
 
 	CGPROGRAM
 
-	#pragma target 5.0
+#pragma target 3.5
 	#pragma vertex vertApply
 	#pragma geometry geom
 	#pragma fragment frag

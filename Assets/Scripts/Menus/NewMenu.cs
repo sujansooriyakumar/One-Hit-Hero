@@ -36,6 +36,11 @@ public class NewMenu : MonoBehaviour
 
         controller.isNetworked = false;
         controller.currentMode = GameController.GameMode.ARCADE;
+        controller.names.Clear();
+        controller.names.Add("TwistingTracy");
+        controller.names.Add("BoomerangBob");
+        controller.names.Add("HeftyHarry");
+        controller.names.Add("Berserker");
         SceneManager.LoadScene(1);
     }
     public void Options()

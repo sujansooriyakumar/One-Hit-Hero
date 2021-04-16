@@ -13,7 +13,7 @@ public class CSSCursor : MonoBehaviour
     public int currentIndex;
     GraphicRaycaster gr;
     private PointerEventData pointerEventData = new PointerEventData(null);
-    private string currentSelection;
+    public string currentSelection;
     bool submit;
 
     private void Start()
@@ -33,6 +33,10 @@ public class CSSCursor : MonoBehaviour
         if (results.Count > 1)
         {
             currentSelection = results[1].gameObject.name;
+        }
+        else
+        {
+            currentSelection = "";
         }
         
        
@@ -57,7 +61,7 @@ public class CSSCursor : MonoBehaviour
     {
         if (context.performed)
         {
-            gc.SetCharacter(currentSelection, playerID);
+            if(currentSelection != "")gc.SetCharacter(currentSelection, playerID);
             if(gc.currentMode == GameController.GameMode.TRAINING)
             {
                 if (playerID == 1) playerID++;

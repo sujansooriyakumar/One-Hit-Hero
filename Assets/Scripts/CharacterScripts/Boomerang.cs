@@ -25,14 +25,14 @@ public class Boomerang : Projectile
     {
         this.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 1, transform.rotation.eulerAngles.z);
         if(owner.transform.rotation.eulerAngles.y == 90 &&
-            (transform.position.x - spawnPos.x >= 3.5f) && !flipped)
+            (transform.position.x - spawnPos.x >= 8.0f) && !flipped)
         {
             GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * -1;
             flipped = true;
         }
 
         if (owner.transform.rotation.eulerAngles.y == 270 &&
-           (transform.position.x - spawnPos.x <= -3.5f) && !flipped)
+           (transform.position.x - spawnPos.x <= -8.0f) && !flipped)
         {
             GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity * -1;
             flipped = true;

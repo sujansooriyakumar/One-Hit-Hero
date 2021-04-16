@@ -102,7 +102,7 @@ Shader "Hidden/PostProcessing/FinalPass"
                 #pragma exclude_renderers gles vulkan switch
 
                 #pragma multi_compile __ STEREO_INSTANCING_ENABLED STEREO_DOUBLEWIDE_TARGET
-                #pragma target 5.0
+#pragma target 3.5
 
             ENDHLSL
         }

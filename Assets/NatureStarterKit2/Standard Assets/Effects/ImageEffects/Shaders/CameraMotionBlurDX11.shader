@@ -187,7 +187,7 @@ Subshader {
 		ZTest Always Cull Off ZWrite Off
 
 		CGPROGRAM
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert
 		#pragma fragment TileMax
 
@@ -199,7 +199,7 @@ Subshader {
 		ZTest Always Cull Off ZWrite Off
 
 		CGPROGRAM
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert
 		#pragma fragment NeighbourMax
 
@@ -211,7 +211,7 @@ Subshader {
 		ZTest Always Cull Off ZWrite Off
 
 		CGPROGRAM
-		#pragma target 5.0
+#pragma target 3.5
 		#pragma vertex vert 
 		#pragma fragment ReconstructFilterBlur
 

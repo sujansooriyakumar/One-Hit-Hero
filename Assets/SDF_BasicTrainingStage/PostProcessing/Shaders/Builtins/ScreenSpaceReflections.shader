@@ -6,7 +6,7 @@ Shader "Hidden/PostProcessing/ScreenSpaceReflections"
     CGINCLUDE
 
         #include "UnityCG.cginc"
-        #pragma target 5.0
+#pragma target 3.5
 
         // Ported from StdLib, we can't include it as it'll conflict with internal Unity includes
         struct AttributesDefault

@@ -12,7 +12,7 @@ public class CameraControl : MonoBehaviour
     // if the players are moving to the right, pan right
     // clamp edges of cam at -7 and 4
     GameObject leftPlayer, rightPlayer;
-    float maxDist = 9.1f;
+    float maxDist = 13.0f;
     float margin = 1.5f;
     public Transform _transform;
     Vector3 camPos;

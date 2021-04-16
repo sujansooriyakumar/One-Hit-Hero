@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public int playerTwoWins;
     public List<string> names;
     public string[] characterNames;
+    public static GameController instance;
     public enum GameMode
     {
         ARCADE,
@@ -30,11 +31,19 @@ public class GameController : MonoBehaviour
         playerOneWins = 0;
         paused = false;
         playerTwoWins = 0;
-        characterNames = new string[4];
         names.Add("TwistingTracy");
         names.Add("BoomerangBob");
         names.Add("HeftyHarry");
         names.Add("Berserker");
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
     }
     private void Update()
@@ -75,7 +84,11 @@ public class GameController : MonoBehaviour
                 playerOneWins = 0;
                 playerTwoWins = 0;
                 FindObjectOfType<PlayerSpawner>().gameOver.SetActive(true);
-                Time.timeScale = 0.0f;
+                Projectile[] projectiles = FindObjectsOfType<Projectile>();
+                foreach(Projectile p in projectiles)
+                {
+                    Destroy(p.gameObject);
+                }
             }
 
             if(currentMode == GameMode.ARCADE)
@@ -83,7 +96,6 @@ public class GameController : MonoBehaviour
                 if (names.Count > 0 && playerOneWins >= 5)
                 {
                     characterSelectionp2 = names.ToArray()[Random.Range(0, names.Count)];
-                    names.Remove(characterSelectionp2);
                     playerOneWins = 0;
                     playerTwoWins = 0;
                     Invoke("ResetPositions", 2.0f);
@@ -93,10 +105,14 @@ public class GameController : MonoBehaviour
                     playerOneWins = 0;
                     playerTwoWins = 0;
                     FindObjectOfType<PlayerSpawner>().gameOver.SetActive(true);
-                    Time.timeScale = 0.0f;
                 }
                
-
+                if(names.Count == 0 && playerOneWins <= 5)
+                {
+                    playerOneWins = 0;
+                    playerTwoWins = 0;
+                    FindObjectOfType<PlayerSpawner>().gameOver.SetActive(true);
+                }
 
             }
         }
@@ -108,6 +124,8 @@ public class GameController : MonoBehaviour
 
     public void ResetPositions()
     {
+        names.Remove(characterSelectionp2);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Character[] players = GameObject.FindObjectsOfType<Character>();
         foreach(Character c in players)
@@ -127,13 +145,20 @@ public class GameController : MonoBehaviour
 
     public void MainMenu()
     {
-
+        // names = new List<string>(4);
+        names.Clear();
+        names.Add("TwistingTracy");
+        names.Add("BoomerangBob");
+        names.Add("HeftyHarry");
+        names.Add("Berserker");
+        SceneManager.LoadScene(0);
+        
     }
 
     public void Rematch()
     {
+
         ResetPositions();
-        Time.timeScale = 1.0f;
         HideUI();
     }
 

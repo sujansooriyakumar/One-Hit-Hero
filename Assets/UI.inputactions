@@ -1,1 +1,44 @@
-﻿{}
+{
+    "name": "UI",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "d0823af1-ffc3-49a5-a7bf-253421d2d7ee",
+            "actions": [
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "cc4dfe4d-b869-4d4b-9b51-152e9c741062",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8b9214de-17b7-43b0-b5ad-b6cce99d1bdd",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e1c0be6-4f82-436d-bd8b-5381aa4fef4d",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
